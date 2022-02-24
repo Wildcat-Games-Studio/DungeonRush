@@ -7,8 +7,56 @@ public class GameState : MonoBehaviour
     // Important stuff
     public PlayerStats playerStats;
     public SpellStats spellStats;
-
     public int numBossesDefeated;
+
+    #region Timer
+
+    public float CurrentTime { get; private set; }
+    private float lastTime;
+    private bool doTimerTicks;
+
+    public void PauseTimer() => doTimerTicks = false;
+    public void StartTimer()
+    {
+        doTimerTicks = true;
+    }
+    public void ResetTimer()
+    {
+        CurrentTime = 0.0f;
+        lastTime = 0.0f;
+        timerUpdateFunc?.Invoke(CurrentTime);
+    }
+    public void RestartTimer()
+    {
+        ResetTimer();
+        StartTimer();
+    }
+
+    public delegate void TimerUpdateFunc(float time);
+    public TimerUpdateFunc timerUpdateFunc;
+
+    #endregion
+
+    private void Start()
+    {
+        ResetTimer();
+        PauseTimer();
+    }
+
+    private void Update()
+    {
+        if (doTimerTicks)
+        {
+            lastTime = CurrentTime;
+            CurrentTime += Time.deltaTime;
+
+            // truncate and check if a second (1.0f) has passed
+            if((int)CurrentTime > (int)lastTime)
+            {
+                timerUpdateFunc?.Invoke(CurrentTime);
+            }
+        }
+    }
 
     # region SingletonStuff
 
