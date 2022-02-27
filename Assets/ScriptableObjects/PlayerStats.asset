@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 200
-  maxSpeed: 5
+  maxSpeed: 20
   accelRate: 10
   friction: 50
   rollCooldown: 1
