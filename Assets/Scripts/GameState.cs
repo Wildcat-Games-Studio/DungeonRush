@@ -5,9 +5,15 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     // Important stuff
-    public PlayerStats playerStats;
-    public SpellStats spellStats;
+    public bilesPlayerController player = null;
     public int numBossesDefeated;
+
+    [SerializeField]
+    private int m_roomWidth;
+    [SerializeField]
+    private int m_roomHeight;
+
+    public LayerMask playerLayerMask;
 
     #region Timer
 
@@ -36,6 +42,12 @@ public class GameState : MonoBehaviour
     public TimerUpdateFunc timerUpdateFunc;
 
     #endregion
+    private void Awake()
+    {
+        SetupSingleton();
+        player = null;
+        numBossesDefeated = 0;
+    }
 
     private void Start()
     {
@@ -58,13 +70,16 @@ public class GameState : MonoBehaviour
         }
     }
 
+    public int GetRoomWidth() => m_roomWidth;
+    public int GetRoomHeight() => m_roomHeight;
+
     # region SingletonStuff
 
     // Singleton stuff
     public static GameState Instance { get { return m_instance; } }
     private static GameState m_instance;
 
-    private void Awake()
+    private void SetupSingleton()
     {
         if (m_instance != null && m_instance != this)
         {

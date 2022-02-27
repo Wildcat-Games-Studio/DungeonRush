@@ -8,11 +8,14 @@ public class TimeLabel : MonoBehaviour
 {
     TextMeshProUGUI label;
 
-    private void Start()
+    private void Awake()
     {
         label = GetComponent<TextMeshProUGUI>();
-        GameState.Instance.timerUpdateFunc = TimerUpdateFunc;
+    }
 
+    private void Start()
+    {
+        GameState.Instance.timerUpdateFunc = TimerUpdateFunc;
     }
 
     bool doOnce = true;
