@@ -5,8 +5,7 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     // Important stuff
-    public PlayerStats playerStats;
-    public SpellStats spellStats;
+    public bilesPlayerController player;
     public int numBossesDefeated;
 
     #region Timer
@@ -41,6 +40,9 @@ public class GameState : MonoBehaviour
     {
         ResetTimer();
         PauseTimer();
+
+        player = null;
+        numBossesDefeated = 0;
     }
 
     private void Update()

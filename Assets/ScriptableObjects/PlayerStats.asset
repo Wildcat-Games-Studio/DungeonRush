@@ -16,4 +16,5 @@ MonoBehaviour:
   currentHealth: 200
   maxSpeed: 5
   accelRate: 10
+  friction: 50
   rollCooldown: 1

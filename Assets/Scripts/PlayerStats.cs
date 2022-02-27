@@ -12,6 +12,7 @@ public class PlayerStats : ScriptableObject
     [Header("Speeds")]
     public float maxSpeed;
     public float accelRate;
+    public float friction;
 
     [Header("Rolling")]
     public float rollCooldown;
