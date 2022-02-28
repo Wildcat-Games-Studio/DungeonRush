@@ -20,6 +20,10 @@ public class CrystalBoss : MonoBehaviour
 
     [Header("Attack Variables")]
     public float laserSpeed;
+    public float spikeSpeed;
+    [Range(0.0f, 1.0f)]
+    public float spikeChance;
+    public uint maxTeleportsBeforeSpike;
 
     [Header("Hold State Variables")]
     public float maxBubbleSize;
@@ -27,21 +31,27 @@ public class CrystalBoss : MonoBehaviour
     public float holdAmplitude;
 
     [Header("External Dependencies")]
+    public SpriteRenderer mainSprite;
     public Transform bubbleTransform;
     public LineRenderer targetLine;
     public LineRenderer attackLine;
+    public SpikeGenerator spikeGenerator;
+
     private Animator m_animator;
 
     [SerializeField]
-    private enum State { Idle, Charge, Hold, Collapse, Shoot, Recover, Teleport, TeleportWaiting };
+    private enum State { Idle, Charge, Hold, Collapse, Shoot, Recover, Teleport, TeleportWaiting, Spiking };
     [SerializeField]
     private State m_state;
 
     private float m_timer;
 
     private Vector2 m_hitPoint;
-    private Vector2 m_lastDir;
     private float m_teleportWaitTime;
+
+    private float m_laserAngle;
+    private float m_laserTraceDir;
+    private uint m_numTeleports;
 
     private void Awake()
     {
@@ -49,12 +59,15 @@ public class CrystalBoss : MonoBehaviour
 
         m_state = State.Idle;
         m_timer = 0.0f;
+        m_numTeleports = 0;
     }
 
     void Start()
     {
         targetLine.enabled = false;
         attackLine.enabled = false;
+
+        spikeGenerator.attackFinished = FinishSpike;
     }
 
     void Update()
@@ -77,14 +90,14 @@ public class CrystalBoss : MonoBehaviour
         if (m_timer >= 1.0f)
         {
             m_timer = 0.0f;
-            ChargeStateEnter();
+            ChangeStateCharge();
             return;
         }
 
         m_timer += Time.deltaTime;
     }
 
-    private void ChargeStateEnter()
+    private void ChangeStateCharge()
     {
         m_state = State.Charge;
         targetLine.enabled = true;
@@ -94,21 +107,21 @@ public class CrystalBoss : MonoBehaviour
 
     private void ChargeState()
     {
+        Vector2 dir2player = (GameState.Instance.player.transform.position - transform.position).normalized;
+
         if (m_timer >= chargeTime)
         {
             m_timer = 0.0f;
             m_state = State.Hold;
 
             bubbleTransform.localScale = new Vector2(maxBubbleSize, maxBubbleSize);
+            m_laserAngle = Vector2.SignedAngle(Vector2.right, dir2player) * Mathf.Deg2Rad;
 
             return;
         }
 
         m_timer += Time.deltaTime;
         bubbleTransform.localScale = Vector2.Lerp(Vector2.zero, new Vector2(maxBubbleSize, maxBubbleSize), m_timer / chargeTime);
-
-        Vector2 dir2player = (GameState.Instance.player.transform.position - transform.position).normalized;
-        m_lastDir = dir2player;
 
         Vector2? endpt = CalcLaserEnd(dir2player);
 
@@ -149,6 +162,10 @@ public class CrystalBoss : MonoBehaviour
             bubbleTransform.localScale = Vector2.zero;
             attackLine.SetPosition(1, m_hitPoint);
 
+            Vector2 dir2player = (GameState.Instance.player.transform.position - transform.position).normalized;
+            float playerAngle = Vector2.SignedAngle(Vector2.right, dir2player) * Mathf.Deg2Rad;
+            m_laserTraceDir = Mathf.Sign(playerAngle - m_laserAngle);
+
             return;
         }
 
@@ -170,10 +187,12 @@ public class CrystalBoss : MonoBehaviour
 
         m_timer += Time.deltaTime;
 
-        Vector2 dir2player = (GameState.Instance.player.transform.position - transform.position).normalized;
-        m_lastDir = Vector2.Lerp(m_lastDir, dir2player, Time.deltaTime * laserSpeed).normalized;
+        m_laserAngle += m_laserTraceDir * Time.deltaTime * laserSpeed;
+        Vector2 dir = new Vector2();
+        dir.x = Mathf.Cos(m_laserAngle);
+        dir.y = Mathf.Sin(m_laserAngle);
 
-        Vector2? endpt = CalcLaserEnd(m_lastDir);
+        Vector2? endpt = CalcLaserEnd(dir);
         if (endpt != null)
         {
             attackLine.SetPosition(1, (Vector3)endpt);
@@ -186,15 +205,12 @@ public class CrystalBoss : MonoBehaviour
         if (m_timer >= recoverTime)
         {
             m_timer = 0.0f;
-            m_state = State.Teleport;
-
-            m_animator.SetTrigger("Teleport");
-
             bubbleTransform.localScale = Vector2.zero;
             attackLine.SetPosition(1, m_hitPoint);
-
             attackLine.enabled = false;
-
+            
+            ChangeStateTeleport();
+            
             return;
         }
 
@@ -206,14 +222,35 @@ public class CrystalBoss : MonoBehaviour
         }
     }
 
+    private void ChangeStateTeleport()
+    {
+        m_state = State.Teleport;
+        m_animator.SetTrigger("Teleport");
+    }
+
+    private void StartAppear()
+    {
+        m_state = State.Teleport;
+        m_animator.SetTrigger("Appear");
+        mainSprite.forceRenderingOff = false;
+    }
+
     private void TeleportWaitState()
     {
         if (m_timer >= m_teleportWaitTime)
         {
             m_timer = 0.0f;
-            m_state = State.Teleport;
 
-            m_animator.SetTrigger("Appear");
+            if (m_numTeleports >= maxTeleportsBeforeSpike || Random.value < spikeChance)
+            {
+                m_numTeleports = 0;
+                ChangeStateSpiking();
+            }
+            else
+            {
+                m_numTeleports++;
+                StartAppear();
+            }
 
             return;
         }
@@ -223,6 +260,7 @@ public class CrystalBoss : MonoBehaviour
 
     private void DoTeleport()
     {
+        mainSprite.forceRenderingOff = true;
         transform.position = FindTeleportLocation();
         m_state = State.TeleportWaiting;
 
@@ -231,7 +269,18 @@ public class CrystalBoss : MonoBehaviour
 
     private void EndTeleport()
     {
-        ChargeStateEnter();
+        ChangeStateCharge();
+    }
+
+    private void ChangeStateSpiking()
+    {
+        m_state = State.Spiking;
+        spikeGenerator.StartRandomAttack(spikeSpeed);
+    }
+
+    private void FinishSpike()
+    {
+        StartAppear();
     }
 
     private Vector2 FindTeleportLocation()
@@ -239,18 +288,17 @@ public class CrystalBoss : MonoBehaviour
         Vector2 res = new Vector2();
 
         float distsqr = teleportRangeFromPlayer * teleportRangeFromPlayer;
-        float walldistsqr = teleportRangeFromWalls * teleportRangeFromWalls;
 
         Vector2 extents = new Vector2(GameState.Instance.GetRoomWidth() / 2.0f - teleportRangeFromWalls, GameState.Instance.GetRoomHeight() / 2.0f - teleportRangeFromWalls);
 
-        uint timesDone = 100;
+        uint timesDone = 500;
 
         do
         {
             res.x = Random.Range(-extents.x, extents.x);
             res.y = Random.Range(-extents.y, extents.y);
         }
-        while (Vector2.SqrMagnitude(res - (Vector2)GameState.Instance.player.transform.position) < distsqr && Vector2.SqrMagnitude(res - (Vector2)transform.position) < walldistsqr && timesDone-- > 1);
+        while (Vector2.SqrMagnitude(res - (Vector2)GameState.Instance.player.transform.position) < distsqr && timesDone-- > 1);
 
         return res;
     }
