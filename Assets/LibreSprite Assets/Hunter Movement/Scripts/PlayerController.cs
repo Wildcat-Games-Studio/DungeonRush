@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     {
         ProcessInputs();
         Animate();
+
+        if(Input.GetKeyDown("space"))
+        {
+            StartCoroutine("Attack");
+        }
     }
 
     private void FixedUpdate()
@@ -51,5 +56,12 @@ public class PlayerController : MonoBehaviour
             anim.SetFloat("Vertical", moveDirection.y);
         }
         anim.SetFloat("Speed", moveSpeed);
+    }
+
+    private IEnumerator Attack()
+    {
+        anim.SetBool("isAttacking", true);
+        yield return null;
+        anim.SetBool("isAttacking", false);
     }
 }
