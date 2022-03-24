@@ -45,7 +45,6 @@ public class CrystalBoss : MonoBehaviour
         get { return _currentState; }
         set
         {
-
             _currentState?.Exit();
             _currentState = value;
             _currentState?.Enter();
@@ -56,6 +55,7 @@ public class CrystalBoss : MonoBehaviour
     public CrystalBossCharge StateCharge { get; private set; }
     public CrystalBossHold StateHold { get; private set; }
     public CrystalBossCollapse StateCollapse { get; private set; }
+    public CrystalBossShoot StateShoot { get; private set; }
 
     public float Timer { get; private set; }
 
@@ -77,6 +77,7 @@ public class CrystalBoss : MonoBehaviour
         StateCharge = new CrystalBossCharge(this, chargeTime, bubbleTransform, maxBubbleSize);
         StateHold = new CrystalBossHold(this, holdTime, bubbleTransform, holdWobble, holdAmplitude);
         StateCollapse = new CrystalBossCollapse(this, collapseTime, bubbleTransform);
+        StateShoot = new CrystalBossShoot(this, shootTime);
         CurrentState = StateIdle;
     }
 
@@ -431,7 +432,7 @@ public class CrystalBossCollapse : CrystalBossState
     {
         if (_machine.CheckTimer(_stateTime))
         {
-            _machine.CurrentState = _machine.StateIdle;
+            _machine.CurrentState = _machine.StateShoot;
             //_state = State.Shoot;
 
             _bubbleTransform.localScale = Vector2.zero;
@@ -447,5 +448,57 @@ public class CrystalBossCollapse : CrystalBossState
 
         _bubbleTransform.localScale = Vector2.Lerp(new Vector2(_maxBubbleSize, _maxBubbleSize), Vector2.zero, _machine.Timer / _stateTime);
         _machine.attackLine.SetPosition(1, Vector2.Lerp(_machine.transform.position, _machine.targetLine.GetPosition(1), _machine.Timer / _stateTime));
+    }
+}
+
+public class CrystalBossShoot : CrystalBossState
+{
+    private float _stateTime;
+    private float _laserAngle = 0.0f; // todo: make this precalculated and shared
+    private float _laserTraceDir = 0.0f;
+
+    public CrystalBossShoot(CrystalBoss state, float stateTime) : base(state)
+    {
+        _stateTime = stateTime;
+    }
+
+    public override void Enter()
+    {
+        _machine.attackLine.enabled = true;
+        _machine.attackLine.SetPosition(0, _machine.transform.position);
+        _machine.attackLine.SetPosition(1, _machine.transform.position);
+
+        Vector2 dir2player = (GameState.Instance.player.transform.position - _machine.transform.position).normalized;
+        float playerAngle = Vector2.SignedAngle(Vector2.right, dir2player) * Mathf.Deg2Rad;
+        _laserTraceDir = Mathf.Sign(playerAngle - _laserAngle);
+    }
+
+    public override void Exit()
+    {
+        _machine.ResetTimer();
+        //_laserAngle = Vector2.SignedAngle(Vector2.right, dir2player) * Mathf.Deg2Rad;
+    }
+
+    public override void Update(float delta)
+    {
+        if (_machine.CheckTimer(_stateTime))
+        {
+            _machine.CurrentState = _machine.StateIdle;
+            return;
+        }
+        _machine.TickTimer(delta);
+
+        _laserAngle += _laserTraceDir * Time.deltaTime * _machine.laserSpeed;
+        Vector2 dir = new Vector2();
+        dir.x = Mathf.Cos(_laserAngle);
+        dir.y = Mathf.Sin(_laserAngle);
+
+        Vector2? endpt = _machine.CalcLaserEnd(dir);
+
+        if (endpt != null)
+        {
+            _machine.attackLine.SetPosition(1, endpt.Value);
+            //_hitPoint = endpt.Value;
+        }
     }
 }
