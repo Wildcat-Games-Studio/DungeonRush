@@ -9,13 +9,13 @@ public class SlimeBoss : MonoBehaviour
     public string playerName = "player";
     private float speed = 1f;
     private float attackSpeed = 20f;
-    private float maxDistance = 3f, minDistance = .5f;      // in attacking range
+    private float maxDistance = 5f, minDistance = 2f;      // in attacking range
     private float moveTime = 0f;
     private float setMoveTime = 2f;
     public int state = 0;
     public float attacktime = 0;
     private float setAttackTime = .5f;
-    private float attackDuration = .7f; // -attacktime
+    private float attackDuration = .8f; // -attacktime, increase for longer attack mode
     private float chargingDuration = 2;
     private float chargingTime;
     private Transform playerTransform;
@@ -71,7 +71,7 @@ public class SlimeBoss : MonoBehaviour
                 moveTime += Time.deltaTime;
                 playerX = Math.Abs(gameObject.transform.position.x - playerTransform.position.x);
                 playerY = Math.Abs(gameObject.transform.position.y - playerTransform.position.y);
-                if (moveTime > setMoveTime && playerX < maxDistance && playerY < maxDistance && playerX > minDistance && playerY > minDistance )
+                if (moveTime > setMoveTime && ((playerX < maxDistance && playerY < maxDistance) && (playerX > minDistance || playerY > minDistance)))
                 {
                     moveTime = 0;
                     state = 1;
