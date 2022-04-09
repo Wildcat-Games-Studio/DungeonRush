@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: bc6e74b1c1615094ab2303195e0975b4
+guid: 44635077716a9074b84982c12216d4cd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -306947617526423356
-    second: Right Attack Animation-Sheet_0
+      213: -1211531736804417386
+    second: Down Attack Animation-sheet_0
   - first:
-      213: -3583426470773644754
-    second: Right Attack Animation-Sheet_1
+      213: -4366254064569297851
+    second: Down Attack Animation-sheet_1
   - first:
-      213: -6399174201371202603
-    second: Right Attack Animation-Sheet_2
+      213: 2019161432101208548
+    second: Down Attack Animation-sheet_2
   - first:
-      213: 5543836382638479433
-    second: Right Attack Animation-Sheet_3
+      213: 2209772823664472029
+    second: Down Attack Animation-sheet_3
   - first:
-      213: 8430367200263811295
-    second: Right Attack Animation-Sheet_4
+      213: 2726344353185378289
+    second: Down Attack Animation-sheet_4
   - first:
-      213: 2242139305452189749
-    second: Right Attack Animation-Sheet_5
+      213: -1675611346088977909
+    second: Down Attack Animation-sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -64,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -131,127 +131,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Right Attack Animation-Sheet_0
+      name: Down Attack Animation-sheet_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 31
-        width: 60
+        x: 25
+        y: 47
+        width: 40
+        height: 52
+      alignment: 9
+      pivot: {x: 0.65, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69029a9ed46cf2fe0800000000000000
+      internalID: -1211531736804417386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Down Attack Animation-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 48
         height: 51
       alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+      pivot: {x: 0.65, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c06fa4a4c08dbbf0800000000000000
-      internalID: -306947617526423356
+      spriteID: 544dd3acf03f763c0800000000000000
+      internalID: -4366254064569297851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Attack Animation-Sheet_1
+      name: Down Attack Animation-sheet_2
       rect:
         serializedVersion: 2
-        x: 158
-        y: 32
-        width: 37
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e222ec25c9c154ec0800000000000000
-      internalID: -3583426470773644754
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Right Attack Animation-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 32
-        width: 37
-        height: 50
+        x: 277
+        y: 48
+        width: 43
+        height: 49
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.65, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dbec67d7f09137a0800000000000000
-      internalID: -6399174201371202603
+      spriteID: 4e1cf80ef90850c10800000000000000
+      internalID: 2019161432101208548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Attack Animation-Sheet_3
+      name: Down Attack Animation-sheet_3
       rect:
         serializedVersion: 2
-        x: 401
+        x: 391
         y: 32
-        width: 57
-        height: 50
+        width: 71
+        height: 65
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.58, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9489d0841d9afec40800000000000000
-      internalID: 5543836382638479433
+      spriteID: ddf25dcdca0baae10800000000000000
+      internalID: 2209772823664472029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Attack Animation-Sheet_4
+      name: Down Attack Animation-sheet_4
       rect:
         serializedVersion: 2
-        x: 543
-        y: 32
-        width: 97
-        height: 50
+        x: 515
+        y: 28
+        width: 82
+        height: 70
       alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      pivot: {x: 0.58, y: 0.58}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd034d97d4eaef470800000000000000
-      internalID: 8430367200263811295
+      spriteID: 1ffa1039ebbe5d520800000000000000
+      internalID: 2726344353185378289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Attack Animation-Sheet_5
+      name: Down Attack Animation-sheet_5
       rect:
         serializedVersion: 2
-        x: 672
-        y: 30
-        width: 96
-        height: 50
+        x: 667
+        y: 31
+        width: 81
+        height: 67
       alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      pivot: {x: 0.28, y: 0.58}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5383b66a1ddad1f10800000000000000
-      internalID: 2242139305452189749
+      spriteID: b0a90c6cb580fb8e0800000000000000
+      internalID: -1675611346088977909
       vertices: []
       indices: 
       edges: []

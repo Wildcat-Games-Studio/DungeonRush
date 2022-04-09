@@ -33,6 +33,18 @@ public class bilesPlayerController : MonoBehaviour
         m_inputVec = context.ReadValue<Vector2>();
     }
 
+    public void AttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (context.ReadValueAsButton())
+            {
+                anim.SetTrigger("attack");
+
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         Vector2 newVelo = m_rigidbody.velocity;
@@ -41,10 +53,16 @@ public class bilesPlayerController : MonoBehaviour
         {
             Vector2 targetVelo = m_inputVec * playerStats.maxSpeed;
             newVelo = Vector2.Lerp(newVelo, targetVelo, Time.fixedDeltaTime * playerStats.accelRate);
+
+            anim.SetFloat("Horizontal", m_inputVec.x);
+            anim.SetFloat("Vertical", m_inputVec.y);
+
+            anim.SetFloat("Speed", 1.0f);
         }
         else
         {
             newVelo = Vector2.Lerp(newVelo, Vector2.zero, Time.fixedDeltaTime * playerStats.friction);
+            anim.SetFloat("Speed", 0.0f);
         }
 
 

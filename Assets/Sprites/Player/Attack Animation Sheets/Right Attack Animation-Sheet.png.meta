@@ -1,43 +1,25 @@
 fileFormatVersion: 2
-guid: 581728b4031e32f4291e18fda608f9ce
+guid: bc6e74b1c1615094ab2303195e0975b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4206523213056301284
-    second: Foward Attack Animation-Sheet_0
+      213: -306947617526423356
+    second: Right Attack Animation-Sheet_0
   - first:
-      213: -2097920320876216809
-    second: Foward Attack Animation-Sheet_1
+      213: -3583426470773644754
+    second: Right Attack Animation-Sheet_1
   - first:
-      213: 9181651528830586231
-    second: Foward Attack Animation-Sheet_2
+      213: -6399174201371202603
+    second: Right Attack Animation-Sheet_2
   - first:
-      213: 3742075102307966491
-    second: Foward Attack Animation-Sheet_3
+      213: 5543836382638479433
+    second: Right Attack Animation-Sheet_3
   - first:
-      213: -4578664262082871715
-    second: Foward Attack Animation-Sheet_4
+      213: 8430367200263811295
+    second: Right Attack Animation-Sheet_4
   - first:
-      213: -3190956515162461151
-    second: Foward Attack Animation-Sheet_5
-  - first:
-      213: 8776757941672383779
-    second: Foward Attack Animation-Sheet_0
-  - first:
-      213: 3033058043141118946
-    second: Foward Attack Animation-Sheet_1
-  - first:
-      213: 1386012464565517079
-    second: Foward Attack Animation-Sheet_2
-  - first:
-      213: 4213450006415849004
-    second: Foward Attack Animation-Sheet_3
-  - first:
-      213: 249133273342301284
-    second: Foward Attack Animation-Sheet_4
-  - first:
-      213: -2030295504499602791
-    second: Foward Attack Animation-Sheet_5
+      213: 2242139305452189749
+    second: Right Attack Animation-Sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -82,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -149,127 +131,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Foward Attack Animation-Sheet_0
+      name: Right Attack Animation-Sheet_0
       rect:
         serializedVersion: 2
-        x: 42
+        x: 31
+        y: 31
+        width: 60
+        height: 51
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c06fa4a4c08dbbf0800000000000000
+      internalID: -306947617526423356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Right Attack Animation-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 158
         y: 32
-        width: 38
+        width: 37
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e222ec25c9c154ec0800000000000000
+      internalID: -3583426470773644754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Right Attack Animation-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 32
+        width: 37
         height: 50
       alignment: 9
-      pivot: {x: 0.58, y: 0.45}
+      pivot: {x: 0.65, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32598f0c8de4dc970800000000000000
-      internalID: 8776757941672383779
+      spriteID: 5dbec67d7f09137a0800000000000000
+      internalID: -6399174201371202603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Foward Attack Animation-Sheet_1
+      name: Right Attack Animation-Sheet_3
       rect:
         serializedVersion: 2
-        x: 160
+        x: 401
         y: 32
-        width: 47
-        height: 49
-      alignment: 9
-      pivot: {x: 0.67, y: 0.45}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2eb519c6836971a20800000000000000
-      internalID: 3033058043141118946
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Foward Attack Animation-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 33
-        width: 45
-        height: 49
-      alignment: 9
-      pivot: {x: 0.68, y: 0.45}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 71bf0bc3efa1c3310800000000000000
-      internalID: 1386012464565517079
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Foward Attack Animation-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 33
-        width: 58
+        width: 57
         height: 50
       alignment: 9
-      pivot: {x: 0.73, y: 0.45}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c26b84ff47e297a30800000000000000
-      internalID: 4213450006415849004
+      spriteID: 9489d0841d9afec40800000000000000
+      internalID: 5543836382638479433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Foward Attack Animation-Sheet_4
+      name: Right Attack Animation-Sheet_4
       rect:
         serializedVersion: 2
-        x: 501
-        y: 33
-        width: 111
-        height: 68
-      alignment: 9
-      pivot: {x: 0.68, y: 0.33}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4645c436469157300800000000000000
-      internalID: 249133273342301284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Foward Attack Animation-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 646
+        x: 543
         y: 32
-        width: 118
-        height: 66
+        width: 97
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: 0.38}
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99a8a31eef0f2d3e0800000000000000
-      internalID: -2030295504499602791
+      spriteID: fd034d97d4eaef470800000000000000
+      internalID: 8430367200263811295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Right Attack Animation-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 30
+        width: 96
+        height: 50
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5383b66a1ddad1f10800000000000000
+      internalID: 2242139305452189749
       vertices: []
       indices: 
       edges: []

@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 44635077716a9074b84982c12216d4cd
+guid: 0f943f97a7dffe44290fc13218b0fc8e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1211531736804417386
-    second: Down Attack Animation-sheet_0
+      213: 5798813871882947353
+    second: Left Attack Animation-Sheet_0
   - first:
-      213: -4366254064569297851
-    second: Down Attack Animation-sheet_1
+      213: 8555971491841824109
+    second: Left Attack Animation-Sheet_1
   - first:
-      213: 2019161432101208548
-    second: Down Attack Animation-sheet_2
+      213: -8042103202771865410
+    second: Left Attack Animation-Sheet_2
   - first:
-      213: 2209772823664472029
-    second: Down Attack Animation-sheet_3
+      213: -7286483728718062085
+    second: Left Attack Animation-Sheet_3
   - first:
-      213: 2726344353185378289
-    second: Down Attack Animation-sheet_4
+      213: 872390681293652198
+    second: Left Attack Animation-Sheet_4
   - first:
-      213: -1675611346088977909
-    second: Down Attack Animation-sheet_5
+      213: 8853603844972504971
+    second: Left Attack Animation-Sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -64,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -131,127 +131,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_0
+      name: Left Attack Animation-Sheet_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 47
-        width: 40
-        height: 52
-      alignment: 9
-      pivot: {x: 0.65, y: 0.45}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69029a9ed46cf2fe0800000000000000
-      internalID: -1211531736804417386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Down Attack Animation-sheet_1
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 48
-        width: 48
+        x: 36
+        y: 32
+        width: 60
         height: 51
       alignment: 9
-      pivot: {x: 0.65, y: 0.45}
+      pivot: {x: 0.7, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 544dd3acf03f763c0800000000000000
-      internalID: -4366254064569297851
+      spriteID: 91bc0383e76897050800000000000000
+      internalID: 5798813871882947353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_2
+      name: Left Attack Animation-Sheet_1
       rect:
         serializedVersion: 2
-        x: 277
-        y: 48
-        width: 43
-        height: 49
-      alignment: 9
-      pivot: {x: 0.65, y: 0.45}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e1cf80ef90850c10800000000000000
-      internalID: 2019161432101208548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Down Attack Animation-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 391
+        x: 188
         y: 32
-        width: 71
-        height: 65
-      alignment: 9
-      pivot: {x: 0.58, y: 0.55}
+        width: 36
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddf25dcdca0baae10800000000000000
-      internalID: 2209772823664472029
+      spriteID: d65d9978dbaecb670800000000000000
+      internalID: 8555971491841824109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_4
+      name: Left Attack Animation-Sheet_2
       rect:
         serializedVersion: 2
-        x: 515
-        y: 28
-        width: 82
-        height: 70
+        x: 320
+        y: 32
+        width: 38
+        height: 50
       alignment: 9
-      pivot: {x: 0.58, y: 0.58}
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ffa1039ebbe5d520800000000000000
-      internalID: 2726344353185378289
+      spriteID: eb070c7feb5b46090800000000000000
+      internalID: -8042103202771865410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_5
+      name: Left Attack Animation-Sheet_3
       rect:
         serializedVersion: 2
-        x: 667
-        y: 31
-        width: 81
-        height: 67
+        x: 437
+        y: 33
+        width: 57
+        height: 50
       alignment: 9
-      pivot: {x: 0.28, y: 0.58}
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a90c6cb580fb8e0800000000000000
-      internalID: -1675611346088977909
+      spriteID: bfd981877a531ea90800000000000000
+      internalID: -7286483728718062085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Attack Animation-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 34
+        width: 98
+        height: 50
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e08ed7d3ba5b1c00800000000000000
+      internalID: 872390681293652198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Attack Animation-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 34
+        width: 100
+        height: 50
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b876e91e9c15eda70800000000000000
+      internalID: 8853603844972504971
       vertices: []
       indices: 
       edges: []
