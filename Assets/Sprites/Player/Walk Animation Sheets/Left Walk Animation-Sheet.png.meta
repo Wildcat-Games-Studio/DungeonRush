@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: 4a807951903d5644f937bb5516188b7e
+guid: eea8ec289e8318c4db51880a7e44e39d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7537031664999869691
-    second: Right Walk Animation-Sheet_0
+      213: -3606411414298546419
+    second: Left Walk Animation-Sheet_0
   - first:
-      213: -6225541060958960700
-    second: Right Walk Animation-Sheet_1
+      213: -6583752593839342504
+    second: Left Walk Animation-Sheet_1
   - first:
-      213: 1846566731691487453
-    second: Right Walk Animation-Sheet_2
+      213: 3710309316875884153
+    second: Left Walk Animation-Sheet_2
   - first:
-      213: 1384309523143976886
-    second: Right Walk Animation-Sheet_3
+      213: -3295539215400054734
+    second: Left Walk Animation-Sheet_3
   - first:
-      213: 3711007700277509483
-    second: Right Walk Animation-Sheet_4
+      213: -2059621794290969707
+    second: Left Walk Animation-Sheet_4
   - first:
-      213: -5759605489589935944
-    second: Right Walk Animation-Sheet_5
+      213: 411809795835736388
+    second: Left Walk Animation-Sheet_5
   - first:
-      213: 6809599104761774349
-    second: Right Walk Animation-Sheet_6
+      213: -422941675173058249
+    second: Left Walk Animation-Sheet_6
   - first:
-      213: -1711079827289846449
-    second: Right Walk Animation-Sheet_7
+      213: -1506635246454509400
+    second: Left Walk Animation-Sheet_7
   - first:
-      213: -3472943412709657367
-    second: Right Walk Animation-Sheet_8
+      213: -68033851105110512
+    second: Left Walk Animation-Sheet_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -73,7 +73,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -140,13 +140,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Right Walk Animation-Sheet_0
+      name: Left Walk Animation-Sheet_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 4
-        width: 43
-        height: 54
+        x: 7
+        y: 5
+        width: 42
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,19 +154,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfc203dcd5ae89860800000000000000
-      internalID: 7537031664999869691
+      spriteID: d0f22d02de373fdc0800000000000000
+      internalID: -3606411414298546419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Walk Animation-Sheet_1
+      name: Left Walk Animation-Sheet_1
       rect:
         serializedVersion: 2
-        x: 78
+        x: 65
         y: 4
-        width: 50
+        width: 48
         height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -175,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c3ceeea36f6a99a0800000000000000
-      internalID: -6225541060958960700
+      spriteID: 85c362be5efc1a4a0800000000000000
+      internalID: -6583752593839342504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Walk Animation-Sheet_2
+      name: Left Walk Animation-Sheet_2
       rect:
         serializedVersion: 2
-        x: 142
-        y: 4
-        width: 50
+        x: 129
+        y: 5
+        width: 49
         height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -196,19 +196,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd07680b8a250a910800000000000000
-      internalID: 1846566731691487453
+      spriteID: 97695376aaaad7330800000000000000
+      internalID: 3710309316875884153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Walk Animation-Sheet_3
+      name: Left Walk Animation-Sheet_3
       rect:
         serializedVersion: 2
-        x: 205
-        y: 4
-        width: 50
+        x: 194
+        y: 5
+        width: 49
         height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -217,60 +217,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b7ef2a4d2e063310800000000000000
-      internalID: 1384309523143976886
+      spriteID: 230d5ba4b84e342d0800000000000000
+      internalID: -3295539215400054734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Walk Animation-Sheet_4
+      name: Left Walk Animation-Sheet_4
       rect:
         serializedVersion: 2
-        x: 268
-        y: 4
-        width: 46
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6db7c577d5208330800000000000000
-      internalID: 3711007700277509483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Right Walk Animation-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 332
-        y: 4
-        width: 39
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b02a9aa255c110b0800000000000000
-      internalID: -5759605489589935944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Right Walk Animation-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 395
-        y: 4
+        x: 262
+        y: 5
         width: 45
         height: 53
       alignment: 0
@@ -280,18 +238,81 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d01c4269e4e808e50800000000000000
-      internalID: 6809599104761774349
+      spriteID: 59352a3f3e0ca63e0800000000000000
+      internalID: -2059621794290969707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Right Walk Animation-Sheet_7
+      name: Left Walk Animation-Sheet_5
       rect:
         serializedVersion: 2
-        x: 461
-        y: 4
+        x: 335
+        y: 5
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441b0d3d3da07b500800000000000000
+      internalID: 411809795835736388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Walk Animation-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 5
+        width: 44
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 739e99a89c8612af0800000000000000
+      internalID: -422941675173058249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Walk Animation-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 6
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0fef0d93b571be0800000000000000
+      internalID: -1506635246454509400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Walk Animation-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 6
         width: 50
         height: 50
       alignment: 0
@@ -301,29 +322,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4d4d0876f50148e0800000000000000
-      internalID: -1711079827289846449
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Right Walk Animation-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 525
-        y: 6
-        width: 51
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e47868dd50adcfc0800000000000000
-      internalID: -3472943412709657367
+      spriteID: 0169d28a29b4e0ff0800000000000000
+      internalID: -68033851105110512
       vertices: []
       indices: 
       edges: []

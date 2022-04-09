@@ -9,6 +9,8 @@ public class bilesPlayerController : MonoBehaviour
     public PlayerStats playerStats;
     public SpellStats spellStats;
 
+    public Animator anim;
+
     private enum State { Moving };
     private State m_state;
 

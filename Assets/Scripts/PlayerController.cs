@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //if(GameState.Instance.player == null) GameState.Instance.player = this;
         speedAddition = 2;
     }
 

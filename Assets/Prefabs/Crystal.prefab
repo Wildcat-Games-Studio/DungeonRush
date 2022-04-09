@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8153291348234935076}
   - component: {fileID: 8153291348234935079}
   - component: {fileID: 8153291348234935078}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 8153291348419686764}
   - component: {fileID: 8153291348419686767}
   - component: {fileID: 8153291348419686766}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TargetLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8153291348552097768}
   - component: {fileID: 8153291348552097769}
-  m_Layer: 0
+  - component: {fileID: 3279984109966207091}
+  - component: {fileID: 5984437836249406894}
+  m_Layer: 9
   m_Name: Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,6 +354,43 @@ MonoBehaviour:
   _shootSpeed: 1
   _teleportRangeFromPlayer: 8.3
   _teleportRangeFromWall: 6.55
+--- !u!50 &3279984109966207091
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153291348552097686}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &5984437836249406894
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153291348552097686}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.481445}
+  m_Size: {x: 5.5256267, y: 2.9258006}
+  m_Direction: 1
 --- !u!1 &8153291348652489332
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +404,7 @@ GameObject:
   - component: {fileID: 8153291348652489335}
   - component: {fileID: 8153291348652489288}
   - component: {fileID: 8153291348652489291}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +530,7 @@ GameObject:
   - component: {fileID: 8153291349437982545}
   - component: {fileID: 8153291349437982544}
   - component: {fileID: 8153291349437982547}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8153291349494432183}
   - component: {fileID: 8153291349494432182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8153291349941972357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LaserOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +722,7 @@ GameObject:
   - component: {fileID: 8153291350086054341}
   - component: {fileID: 8153291350086054338}
   - component: {fileID: 8153291350086054343}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +848,7 @@ GameObject:
   - component: {fileID: 8153291350241868541}
   - component: {fileID: 8153291350241868538}
   - component: {fileID: 8153291350241868543}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

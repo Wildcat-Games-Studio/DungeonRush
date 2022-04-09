@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: ec5e0829b74a6dd4ea8318f7545506fc
+guid: da3784d37ac9b554c9cd6c09463cad5b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8814616813189408924
-    second: Down Walk Animation-Sheet_0
+      213: 3315947793619766903
+    second: Forward Walk Animation-Sheet_0
   - first:
-      213: -9145565000904364045
-    second: Down Walk Animation-Sheet_1
+      213: -7239668405284857800
+    second: Forward Walk Animation-Sheet_1
   - first:
-      213: 8597725611014497865
-    second: Down Walk Animation-Sheet_2
+      213: -8531230573425479956
+    second: Forward Walk Animation-Sheet_2
   - first:
-      213: 537506001491112619
-    second: Down Walk Animation-Sheet_3
+      213: 7007877428433906933
+    second: Forward Walk Animation-Sheet_3
   - first:
-      213: -7608103862468739407
-    second: Down Walk Animation-Sheet_4
+      213: 232063334403165121
+    second: Forward Walk Animation-Sheet_4
   - first:
-      213: 6000149998749667985
-    second: Down Walk Animation-Sheet_5
+      213: -8408107364133351473
+    second: Forward Walk Animation-Sheet_5
   - first:
-      213: -1213930882563869480
-    second: Down Walk Animation-Sheet_6
+      213: 7624584560722696711
+    second: Forward Walk Animation-Sheet_6
   - first:
-      213: -3691859930876709039
-    second: Down Walk Animation-Sheet_7
+      213: 7034014396861392304
+    second: Forward Walk Animation-Sheet_7
   - first:
-      213: 7991012987395283223
-    second: Down Walk Animation-Sheet_8
+      213: 261107318872072278
+    second: Forward Walk Animation-Sheet_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -73,7 +73,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -140,12 +140,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Down Walk Animation-Sheet_0
+      name: Forward Walk Animation-Sheet_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 6
-        width: 37
+        x: 40
+        y: 22
+        width: 40
         height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c98275d2a4fc35a70800000000000000
-      internalID: 8814616813189408924
+      spriteID: 77e427c13fc940e20800000000000000
+      internalID: 3315947793619766903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Walk Animation-Sheet_1
+      name: Forward Walk Animation-Sheet_1
       rect:
         serializedVersion: 2
-        x: 78
-        y: 6
-        width: 35
-        height: 51
+        x: 170
+        y: 21
+        width: 42
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ffa9d2461d641180800000000000000
-      internalID: -9145565000904364045
+      spriteID: 838906b51f7878b90800000000000000
+      internalID: -7239668405284857800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Walk Animation-Sheet_2
+      name: Forward Walk Animation-Sheet_2
       rect:
         serializedVersion: 2
-        x: 142
-        y: 6
-        width: 35
-        height: 51
+        x: 298
+        y: 20
+        width: 43
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,19 +196,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9462cc8f3e1415770800000000000000
-      internalID: 8597725611014497865
+      spriteID: ceea50e6efafa9980800000000000000
+      internalID: -8531230573425479956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Walk Animation-Sheet_3
+      name: Forward Walk Animation-Sheet_3
       rect:
         serializedVersion: 2
-        x: 204
-        y: 6
-        width: 37
+        x: 427
+        y: 20
+        width: 39
         height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -217,19 +217,82 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba2b48b4cda957700800000000000000
-      internalID: 537506001491112619
+      spriteID: 5fce74f446bf04160800000000000000
+      internalID: 7007877428433906933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Walk Animation-Sheet_4
+      name: Forward Walk Animation-Sheet_4
       rect:
         serializedVersion: 2
-        x: 268
-        y: 6
-        width: 37
+        x: 556
+        y: 19
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb4e748f54783300800000000000000
+      internalID: 232063334403165121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forward Walk Animation-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 21
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf4c7f76e6605b80800000000000000
+      internalID: -8408107364133351473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forward Walk Animation-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 21
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70addcdd247ffc960800000000000000
+      internalID: 7624584560722696711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forward Walk Animation-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 21
+        width: 41
         height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -238,20 +301,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bef547b8d59a6690800000000000000
-      internalID: -7608103862468739407
+      spriteID: 0b528ed73d6dd9160800000000000000
+      internalID: 7034014396861392304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Walk Animation-Sheet_5
+      name: Forward Walk Animation-Sheet_8
       rect:
         serializedVersion: 2
-        x: 329
-        y: 6
-        width: 38
-        height: 51
+        x: 1067
+        y: 21
+        width: 42
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,71 +322,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 192d88a32a0d44350800000000000000
-      internalID: 6000149998749667985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Down Walk Animation-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 395
-        y: 6
-        width: 38
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8d477e24b40472fe0800000000000000
-      internalID: -1213930882563869480
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Down Walk Animation-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 6
-        width: 37
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 157789304f0e3ccc0800000000000000
-      internalID: -3691859930876709039
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Down Walk Animation-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 524
-        y: 6
-        width: 36
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7199a3d49f7c5ee60800000000000000
-      internalID: 7991012987395283223
+      spriteID: 650ef9d19b3af9300800000000000000
+      internalID: 261107318872072278
       vertices: []
       indices: 
       edges: []
