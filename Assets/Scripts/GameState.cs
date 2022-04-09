@@ -9,9 +9,9 @@ public class GameState : MonoBehaviour
     public int numBossesDefeated;
 
     [SerializeField]
-    private int m_roomWidth;
+    private int m_roomWidth = 0;
     [SerializeField]
-    private int m_roomHeight;
+    private int m_roomHeight = 0;
 
     public LayerMask playerLayerMask;
 
