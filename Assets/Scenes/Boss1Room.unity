@@ -849,6 +849,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8153291348234935077, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.4198113
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348234935079, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.56087685
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153291348419686765, guid: 44845299938a265499ab3770272d6f3c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8153291348552097686, guid: 44845299938a265499ab3770272d6f3c, type: 3}
       propertyPath: m_Name
       value: Crystal

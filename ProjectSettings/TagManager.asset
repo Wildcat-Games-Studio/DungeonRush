@@ -17,10 +17,10 @@ TagManager:
   - 
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - EnemyHurtbox
+  - EnemyHitbox
+  - PlayerHurtbox
+  - PlayerHitbox
   - 
   - 
   - 

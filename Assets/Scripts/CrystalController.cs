@@ -7,6 +7,12 @@ public class CrystalController : MonoBehaviour
 {
     #region Variables
 
+    [SerializeField]
+    private Hurtbox _hurtbox;
+    [SerializeField]
+    private int _maxHealth;
+    private int _health;
+
     [Header("Crystal animations")]
     [SerializeField]
     private Animator _crystalAnimator = null;
@@ -36,6 +42,8 @@ public class CrystalController : MonoBehaviour
     private LayerMask _laserLayer = 0;
     [SerializeField]
     private Transform _laserOrigin = null;
+    [SerializeField]
+    private EdgeCollider2D _laserCollider = null;
 
     [Header("Target state")]
     [SerializeField]
@@ -82,6 +90,8 @@ public class CrystalController : MonoBehaviour
         _stateTarget = new StateTarget(this);
         _stateShoot = new StateShoot(this);
         _stateTeleport = new StateTeleport(this);
+
+        _health = _maxHealth;
     }
 
     void Start()
@@ -93,7 +103,40 @@ public class CrystalController : MonoBehaviour
         _effectDispatch.animationEvents.Add(_stateTeleport.Hide);
         _effectDispatch.animationEvents.Add(_stateTeleport.Teleport);
 
+        _hurtbox.onHit = OnHit;
+
         SetState(_stateWait);
+    }
+
+    private void OnHit(int damage)
+    {
+        int last_health = _health;
+        _health -= damage;
+
+        if(_health <= 0)
+        {
+            Die();
+            return;
+        }
+
+        int half_health = (int)(0.5 * _maxHealth);
+        int quarter_health = (int)(0.25 * _maxHealth);
+
+        if(_health <= half_health && last_health > half_health)
+        {
+            _crystalAnimator.SetFloat("Damage", 1);
+        }
+        else if (_health <= quarter_health && last_health > quarter_health)
+        {
+            _crystalAnimator.SetFloat("Damage", 2);
+            _shadowAnimator.SetFloat("Damage", 1);
+        }
+    }
+
+    void Die()
+    {
+        // TODO: 
+        Destroy(gameObject);
     }
 
     void Update()
@@ -139,6 +182,8 @@ public class CrystalController : MonoBehaviour
 
         public override void Enter()
         {
+            _machine._hurtbox.gameObject.SetActive(true);
+            _machine._laserCollider.gameObject.SetActive(false);
             _waitTime = Random.Range(_machine._waitMin, _machine._waitMax);
         }
 
@@ -158,10 +203,11 @@ public class CrystalController : MonoBehaviour
 
     class StateCharge : State
     {
-        public StateCharge(CrystalController machine) : base(machine) {}
+        public StateCharge(CrystalController machine) : base(machine) { }
 
-        public override void Enter() 
+        public override void Enter()
         {
+            _machine._hurtbox.gameObject.SetActive(false);
             // start the animation and let it handle the state
             _machine._bubbleAnimator.SetTrigger("grow");
         }
@@ -192,6 +238,7 @@ public class CrystalController : MonoBehaviour
 
             // initialize line inside the origin to hide it
             _machine._targetLine.SetPositions(new Vector3[] { _machine._laserOrigin.position, _machine._laserOrigin.position });
+            _machine._targetLine.gameObject.SetActive(true);
 
             // initialzie the player position to avoid any jump
             _machine._sampledPlayerPos = GameState.Instance.player.transform.position;
@@ -204,11 +251,12 @@ public class CrystalController : MonoBehaviour
         {
             // hide the line by reseting
             _machine._targetLine.SetPositions(new Vector3[] { _machine._laserOrigin.position, _machine._laserOrigin.position });
+            _machine._targetLine.gameObject.SetActive(false);
         }
 
         public override void Update()
         {
-            if(_countDown <= 0.0f && _valid)
+            if (_countDown <= 0.0f && _valid)
             {
                 // start the animation and change state at the end of it
                 _machine._bubbleAnimator.SetTrigger("pop");
@@ -225,7 +273,7 @@ public class CrystalController : MonoBehaviour
             // calculate the direction and then shoot the line to a wall
             Vector2 dir2Player = (_machine._sampledPlayerPos - (Vector2)_machine._laserOrigin.position).normalized;
             RaycastHit2D hit = Physics2D.Raycast(_machine._laserOrigin.position, dir2Player, Mathf.Infinity, _machine._laserLayer);
-            if(hit)
+            if (hit)
             {
                 _machine._targetLine.SetPosition(1, hit.point);
             }
@@ -238,6 +286,7 @@ public class CrystalController : MonoBehaviour
 
         public void BubblePopped()
         {
+            _machine._hurtbox.gameObject.SetActive(true);
             // animation has ended
             _machine.SetState(_machine._stateShoot);
         }
@@ -261,6 +310,10 @@ public class CrystalController : MonoBehaviour
 
             // initialize the laser to the origin to hide it
             _machine._shootLine.SetPositions(new Vector3[] { _machine._laserOrigin.position, _machine._laserOrigin.position });
+            _machine._shootLine.gameObject.SetActive(true);
+            _machine._laserCollider.SetPoints(new List<Vector2> { Vector2.zero, Vector2.zero });
+
+            _machine._laserCollider.gameObject.SetActive(true);
 
             // calculate the angle to rotate in
             Vector2 toSample = (_machine._sampledPlayerPos - (Vector2)_machine._laserOrigin.position).normalized;
@@ -275,6 +328,8 @@ public class CrystalController : MonoBehaviour
         {
             // reset the laser to hide it
             _machine._shootLine.SetPositions(new Vector3[] { _machine._laserOrigin.position, _machine._laserOrigin.position });
+            _machine._shootLine.gameObject.SetActive(false);
+            _machine._laserCollider.gameObject.SetActive(false);
         }
 
         public override void Update()
@@ -296,6 +351,8 @@ public class CrystalController : MonoBehaviour
             if (hit)
             {
                 _machine._shootLine.SetPosition(1, hit.point);
+                _machine._laserCollider.SetPoints(new List<Vector2> { _machine._laserOrigin.position - _machine._laserCollider.transform.position,
+                                                                    hit.point - (Vector2)_machine._laserCollider.transform.position });
             }
 
             _countDown -= Time.deltaTime;
@@ -310,6 +367,7 @@ public class CrystalController : MonoBehaviour
 
         public override void Enter()
         {
+            _machine._hurtbox.gameObject.SetActive(false);
             _firstRound = true;
             _machine._effectAnimator.SetTrigger("action");
         }
@@ -318,10 +376,10 @@ public class CrystalController : MonoBehaviour
         {
         }
 
-         // animation has reached largest point
+        // animation has reached largest point
         public void Hide()
         {
-            if(_firstRound)
+            if (_firstRound)
             {
                 _machine._crystalAnimator.SetBool("isVisible", false);
                 _machine._shadowAnimator.SetBool("isVisible", false);
@@ -333,7 +391,7 @@ public class CrystalController : MonoBehaviour
             }
         }
 
-         // animation has reached the end
+        // animation has reached the end
         public void Teleport()
         {
             if (_firstRound)

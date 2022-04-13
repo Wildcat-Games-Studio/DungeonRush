@@ -9,6 +9,9 @@ public class bilesPlayerController : MonoBehaviour
     public PlayerStats playerStats;
     public SpellStats spellStats;
 
+    [SerializeField]
+    private Hurtbox _hurtbox;
+
     public Animator anim;
 
     private enum State { Moving };
@@ -26,6 +29,13 @@ public class bilesPlayerController : MonoBehaviour
     void Start()
     {
         if (GameState.Instance.player == null) { GameState.Instance.player = this; }
+        _hurtbox.onHit = OnHit;
+    }
+
+    private void OnHit(int damage)
+    {
+        playerStats.currentHealth -= damage;
+        print("Player Health: " + playerStats.currentHealth);
     }
 
     public void MovementInput(InputAction.CallbackContext context)
