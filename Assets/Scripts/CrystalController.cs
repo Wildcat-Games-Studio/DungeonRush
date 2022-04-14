@@ -20,7 +20,7 @@ public class CrystalController : MonoBehaviour
     private int _healthStage = 0;
 
     [SerializeField]
-    private ParticleSystem _damageSystem;
+    private ParticleSystem _damageSystem = null;
 
     [Header("Crystal animations")]
     [SerializeField]
