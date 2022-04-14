@@ -17,6 +17,8 @@ public class CrystalController : MonoBehaviour
     [SerializeField]
     private AnimationEventDispatch _crystalDispatch = null;
 
+    private int _healthStage = 0;
+
     [SerializeField]
     private ParticleSystem _damageSystem;
 
@@ -138,10 +140,12 @@ public class CrystalController : MonoBehaviour
 
         if(_health <= half_health && last_health > half_health)
         {
+            _healthStage = 1;
             _crystalAnimator.SetFloat("Damage", 1);
         }
         else if (_health <= quarter_health && last_health > quarter_health)
         {
+            _healthStage = 2;
             _crystalAnimator.SetFloat("Damage", 2);
             _shadowAnimator.SetFloat("Damage", 1);
         }
@@ -193,7 +197,8 @@ public class CrystalController : MonoBehaviour
             _machine._hitbox.gameObject.SetActive(true);
             _machine._hurtbox.gameObject.SetActive(true);
             _machine._laserCollider.gameObject.SetActive(false);
-            _waitTime = Random.Range(_machine._waitMin, _machine._waitMax);
+            float healthMultipler = (3 - _machine._healthStage) / 3.0f;
+            _waitTime = Random.Range(_machine._waitMin * healthMultipler, _machine._waitMax * healthMultipler);
         }
 
         public override void Update()
@@ -309,6 +314,8 @@ public class CrystalController : MonoBehaviour
         private float _rotationDir;
         private float _laserAngle;
 
+        private float _shootSpeed;
+
         public StateShoot(CrystalController machine) : base(machine) { }
 
         public override void Enter()
@@ -331,6 +338,8 @@ public class CrystalController : MonoBehaviour
 
             // convert the vector to an angle for easier rotation
             _laserAngle = Vector2.SignedAngle(Vector2.right, toSample) * Mathf.Deg2Rad;
+
+            _shootSpeed = _machine._shootSpeed * _machine._healthStage + 1.0f;
         }
 
         public override void Exit()
@@ -350,7 +359,7 @@ public class CrystalController : MonoBehaviour
             }
 
             // rotate the line and convert it to a vector
-            _laserAngle += _rotationDir * _machine._shootSpeed * Time.deltaTime;
+            _laserAngle += _rotationDir * _shootSpeed * Time.deltaTime;
 
             Vector2 dir2Player;
             dir2Player.x = Mathf.Cos(_laserAngle);
