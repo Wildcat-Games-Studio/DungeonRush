@@ -10,8 +10,12 @@ public class CrystalController : MonoBehaviour
     [SerializeField]
     private Hurtbox _hurtbox;
     [SerializeField]
-    private int _maxHealth;
+    private Hitbox _hitbox;
+    [SerializeField]
+    private int _maxHealth = 10;
     private int _health;
+    [SerializeField]
+    private AnimationEventDispatch _crystalDispatch = null;
 
     [SerializeField]
     private ParticleSystem _damageSystem;
@@ -108,6 +112,9 @@ public class CrystalController : MonoBehaviour
         _effectDispatch.animationEvents.Add(_stateTeleport.Hide);
         _effectDispatch.animationEvents.Add(_stateTeleport.Teleport);
 
+        _crystalDispatch.animationEvents.Add(_stateDead.Falling);
+        _crystalDispatch.animationEvents.Add(_stateDead.Dead);
+
         _hurtbox.onHit = OnHit;
 
         SetState(_stateWait);
@@ -183,6 +190,7 @@ public class CrystalController : MonoBehaviour
 
         public override void Enter()
         {
+            _machine._hitbox.gameObject.SetActive(true);
             _machine._hurtbox.gameObject.SetActive(true);
             _machine._laserCollider.gameObject.SetActive(false);
             _waitTime = Random.Range(_machine._waitMin, _machine._waitMax);
@@ -371,6 +379,7 @@ public class CrystalController : MonoBehaviour
             _machine._hurtbox.gameObject.SetActive(false);
             _firstRound = true;
             _machine._effectAnimator.SetTrigger("action");
+            _machine._hitbox.gameObject.SetActive(false);
         }
 
         public override void Exit()
@@ -436,10 +445,17 @@ public class CrystalController : MonoBehaviour
 
         public override void Enter()
         {
+            _machine._crystalAnimator.SetBool("isDead", true);
+            _machine._hitbox.gameObject.SetActive(false);
         }
 
-        public override void Exit()
+        public void Dead()
         {
+            Destroy(_machine.gameObject);
+        }
+        public void Falling()
+        {
+            _machine._shadowAnimator.SetBool("isVisible", false);
         }
     }
 

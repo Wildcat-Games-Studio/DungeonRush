@@ -1,5 +1,74 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &561917182241616642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 753971881560000722}
+  - component: {fileID: 6887365780579478553}
+  - component: {fileID: 332946860918453335}
+  m_Layer: 9
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &753971881560000722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561917182241616642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8153291348652489289}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &6887365780579478553
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561917182241616642}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000001230652, y: -1.0323459}
+  m_Size: {x: 10.756435, y: 9.299107}
+  m_Direction: 1
+--- !u!50 &332946860918453335
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561917182241616642}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1041631432985756061
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,8 +136,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.37767553}
-  m_Size: {x: 5.257504, y: 2.487869}
+  m_Offset: {x: 0.000000046843162, y: 0.392949}
+  m_Size: {x: 3.760656, y: 1.9685651}
   m_Direction: 1
 --- !u!114 &3794793223304315254
 MonoBehaviour:
@@ -83,6 +152,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
+--- !u!1 &2204622421968872863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8151258143700070970}
+  - component: {fileID: 8358981565284164634}
+  m_Layer: 9
+  m_Name: Bubble
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8151258143700070970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204622421968872863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8153291348652489289}
+  m_Father: {fileID: 8153291348552097768}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &8358981565284164634
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204622421968872863}
+  m_Enabled: 1
+  m_SortingLayerID: -1090742129
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &2635103277993678882
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +607,7 @@ Transform:
   m_Children:
   - {fileID: 8153291349494432183}
   - {fileID: 8153291350241868540}
-  - {fileID: 8153291348652489289}
+  - {fileID: 8151258143700070970}
   - {fileID: 8153291349941972357}
   - {fileID: 8153291348419686764}
   - {fileID: 8153291348234935076}
@@ -520,7 +632,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hurtbox: {fileID: 4788648434373000033}
+  _hitbox: {fileID: 3794793223304315254}
   _maxHealth: 10
+  _crystalDispatch: {fileID: 5747161864868782862}
   _damageSystem: {fileID: 4811869893899906989}
   _crystalAnimator: {fileID: 8153291349437982547}
   _shadowAnimator: {fileID: 8153291350241868538}
@@ -542,7 +656,7 @@ MonoBehaviour:
   _shootTime: 3
   _shootSpeed: 1
   _teleportRangeFromPlayer: 8.3
-  _teleportRangeFromWall: 6.55
+  _teleportRangeFromWall: 11
 --- !u!50 &3279984109966207091
 Rigidbody2D:
   serializedVersion: 4
@@ -591,10 +705,9 @@ GameObject:
   - component: {fileID: 8153291348652489289}
   - component: {fileID: 8153291348652489334}
   - component: {fileID: 8153291348652489335}
-  - component: {fileID: 8153291348652489288}
   - component: {fileID: 8153291348652489291}
   m_Layer: 9
-  m_Name: Bubble
+  m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -608,11 +721,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8153291348652489332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.71, z: 0}
+  m_LocalPosition: {x: 0, y: 5.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8153291348552097768}
-  m_RootOrder: 2
+  m_Children:
+  - {fileID: 753971881560000722}
+  m_Father: {fileID: 8151258143700070970}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8153291348652489334
 SpriteRenderer:
@@ -684,17 +798,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!210 &8153291348652489288
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153291348652489332}
-  m_Enabled: 1
-  m_SortingLayerID: 1316759091
-  m_SortingLayer: 3
-  m_SortingOrder: 0
 --- !u!114 &8153291348652489291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +822,7 @@ GameObject:
   - component: {fileID: 8153291349437982545}
   - component: {fileID: 8153291349437982544}
   - component: {fileID: 8153291349437982547}
+  - component: {fileID: 5747161864868782862}
   m_Layer: 9
   m_Name: Crystal
   m_TagString: Untagged
@@ -825,6 +929,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5747161864868782862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153291349437982559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612d9187d84ba7a41aae29a955805949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8153291349494432180
 GameObject:
   m_ObjectHideFlags: 0
@@ -6059,6 +6175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbb68cf9816ebc4caba4c4ac5cf7e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iTime: 0.4
 --- !u!58 &570243814987298725
 CircleCollider2D:
   m_ObjectHideFlags: 0

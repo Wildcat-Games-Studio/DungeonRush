@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbb68cf9816ebc4caba4c4ac5cf7e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iTime: 0.5
 --- !u!50 &1731560758599780795
 Rigidbody2D:
   serializedVersion: 4
@@ -537,8 +538,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.40769905}
-  m_Size: {x: 3.0465012, y: 2.4869177}
+  m_Offset: {x: 0.000000057328638, y: 0.48090753}
+  m_Size: {x: 2.5026305, y: 2.298669}
   m_Direction: 1
 --- !u!1 &4149203559746837545
 GameObject:
