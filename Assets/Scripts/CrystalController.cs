@@ -13,6 +13,9 @@ public class CrystalController : MonoBehaviour
     private int _maxHealth;
     private int _health;
 
+    [SerializeField]
+    private ParticleSystem _damageSystem;
+
     [Header("Crystal animations")]
     [SerializeField]
     private Animator _crystalAnimator = null;
@@ -79,6 +82,7 @@ public class CrystalController : MonoBehaviour
     private StateTarget _stateTarget;
     private StateShoot _stateShoot;
     private StateTeleport _stateTeleport;
+    private StateDead _stateDead;
 
     #endregion
 
@@ -90,6 +94,7 @@ public class CrystalController : MonoBehaviour
         _stateTarget = new StateTarget(this);
         _stateShoot = new StateShoot(this);
         _stateTeleport = new StateTeleport(this);
+        _stateDead = new StateDead(this);
 
         _health = _maxHealth;
     }
@@ -113,9 +118,11 @@ public class CrystalController : MonoBehaviour
         int last_health = _health;
         _health -= damage;
 
-        if(_health <= 0)
+        _damageSystem.Play();
+
+        if (_health <= 0)
         {
-            Die();
+            SetState(_stateDead);
             return;
         }
 
@@ -131,12 +138,6 @@ public class CrystalController : MonoBehaviour
             _crystalAnimator.SetFloat("Damage", 2);
             _shadowAnimator.SetFloat("Damage", 1);
         }
-    }
-
-    void Die()
-    {
-        // TODO: 
-        Destroy(gameObject);
     }
 
     void Update()
@@ -426,6 +427,19 @@ public class CrystalController : MonoBehaviour
             while (Vector2.SqrMagnitude(res - (Vector2)GameState.Instance.player.transform.position) < distsqr && timesDone-- > 1);
 
             return res;
+        }
+    }
+
+    class StateDead : State
+    {
+        public StateDead(CrystalController machine) : base(machine) { }
+
+        public override void Enter()
+        {
+        }
+
+        public override void Exit()
+        {
         }
     }
 
