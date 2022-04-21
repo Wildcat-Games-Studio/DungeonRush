@@ -61,8 +61,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        anim.SetBool("isAttacking", true);
+        anim.SetTrigger("attack");
         yield return null;
-        anim.SetBool("isAttacking", false);
     }
 }

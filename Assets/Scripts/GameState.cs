@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     // Important stuff
-    public PlayerController player = null;
+    public bilesPlayerController player = null;
     public int numBossesDefeated;
 
     [SerializeField]

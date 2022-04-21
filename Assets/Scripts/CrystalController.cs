@@ -163,6 +163,7 @@ public class CrystalController : MonoBehaviour
         _state?.Enter();
     }
 
+   /*
     private void OnDrawGizmos()
     {
         Handles.color = Color.red;
@@ -170,6 +171,7 @@ public class CrystalController : MonoBehaviour
         Handles.color = Color.cyan;
         Handles.DrawWireDisc(_laserOrigin.position, Vector3.forward, _teleportRangeFromWall);
     }
+   */
 
     #region States
 
