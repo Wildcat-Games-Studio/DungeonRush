@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Damage
+  - player
   layers:
   - Default
   - TransparentFX
@@ -14,12 +16,12 @@ TagManager:
   - 
   - 
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - EnemyHurtbox
+  - EnemyHitbox
+  - PlayerHurtbox
+  - PlayerHitbox
+  - World
   - 
   - 
   - 
@@ -40,6 +42,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Behind
+    uniqueID: 2109493757
     locked: 0
   - name: Sprite
     uniqueID: 3204225167
