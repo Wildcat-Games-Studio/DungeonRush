@@ -8,6 +8,8 @@ public class SlimeBoss : MonoBehaviour
     public Animator spriteAnimator;
     public SpriteRenderer spriteRenderer;
 
+    public AnimationEventDispatch animDispatch;
+
     [SerializeField]
     private float movementSpeed = 1f;
     [SerializeField]
@@ -86,6 +88,8 @@ public class SlimeBoss : MonoBehaviour
             maxY = t;
         }
 
+        animDispatch.animationEvents.Add(StartFollow);
+
         hearts = new GameObject[intHearts];
         for (int i = 0; i < intHearts; i++)
         {
@@ -102,7 +106,7 @@ public class SlimeBoss : MonoBehaviour
 
     void StartFollow()
     {
-        spriteAnimator.SetTrigger("move");
+        spriteAnimator.ResetTrigger("move");
         state = State.Follow;
         moveTime = 0.0f;
     }
@@ -209,7 +213,8 @@ public class SlimeBoss : MonoBehaviour
 
                 if (chargingTime > chargingDuration)
                 {
-                    StartFollow();
+                    spriteAnimator.ResetTrigger("recharge");
+                    spriteAnimator.SetTrigger("move");
                     break;
                 }
                 chargingTime += Time.deltaTime;
@@ -235,7 +240,10 @@ public class SlimeBoss : MonoBehaviour
             {
                 velocity = velocity.magnitude * 0.9f * bounceNormal;
 
-                if(velocity.magnitude > attackSpeed * 0.5f) StartRecharge();
+                if (velocity.magnitude > attackSpeed * 0.5f)
+                {
+                    StartRecharge();
+                }
             }
         }
     }
