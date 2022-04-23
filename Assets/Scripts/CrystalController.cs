@@ -8,7 +8,7 @@ public class CrystalController : MonoBehaviour
     #region Variables
 
     [SerializeField]
-    private Hurtbox _hurtbox = null;
+    private GameObject _hurtbox = null;
     [SerializeField]
     private Hitbox _hitbox = null;
     [SerializeField]
@@ -117,8 +117,6 @@ public class CrystalController : MonoBehaviour
         _crystalDispatch.animationEvents.Add(_stateDead.Falling);
         _crystalDispatch.animationEvents.Add(_stateDead.Dead);
 
-        _hurtbox.onHit = OnHit;
-
         SetState(_stateWait);
     }
 
@@ -195,7 +193,7 @@ public class CrystalController : MonoBehaviour
         public override void Enter()
         {
             _machine._hitbox.gameObject.SetActive(true);
-            _machine._hurtbox.gameObject.SetActive(true);
+            _machine._hurtbox.SetActive(true);
             _machine._laserCollider.gameObject.SetActive(false);
             float healthMultipler = (3 - _machine._healthStage) / 3.0f;
             _waitTime = Random.Range(_machine._waitMin * healthMultipler, _machine._waitMax * healthMultipler);
@@ -221,7 +219,7 @@ public class CrystalController : MonoBehaviour
 
         public override void Enter()
         {
-            _machine._hurtbox.gameObject.SetActive(false);
+            _machine._hurtbox.SetActive(false);
             // start the animation and let it handle the state
             _machine._bubbleAnimator.SetTrigger("grow");
         }
@@ -300,7 +298,7 @@ public class CrystalController : MonoBehaviour
 
         public void BubblePopped()
         {
-            _machine._hurtbox.gameObject.SetActive(true);
+            _machine._hurtbox.SetActive(true);
             // animation has ended
             _machine.SetState(_machine._stateShoot);
         }
@@ -385,7 +383,7 @@ public class CrystalController : MonoBehaviour
 
         public override void Enter()
         {
-            _machine._hurtbox.gameObject.SetActive(false);
+            _machine._hurtbox.SetActive(false);
             _firstRound = true;
             _machine._effectAnimator.SetTrigger("action");
             _machine._hitbox.gameObject.SetActive(false);

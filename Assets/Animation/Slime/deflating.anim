@@ -122,4 +122,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: SetTexture
+    data: 
+    objectReferenceParameter: {fileID: 2800000, guid: 1720a79b1c863c24abd6de8ea9e84025, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

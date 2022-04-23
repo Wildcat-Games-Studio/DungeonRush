@@ -1,43 +1,67 @@
 fileFormatVersion: 2
-guid: bb42b843435d71341837cb0388931103
+guid: 1720a79b1c863c24abd6de8ea9e84025
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9014707201136253724
-    second: deflated_0
+      213: 2410519247121343559
+    second: deflating_mask_0
   - first:
-      213: 2227998171307225001
-    second: deflated_1
+      213: -3996324394407261439
+    second: deflating_mask_1
   - first:
-      213: -5539238213385471995
-    second: deflated_2
+      213: 8156061524337795199
+    second: deflating_mask_2
   - first:
-      213: -7038472540929066129
-    second: deflated_3
+      213: 4126398780740699594
+    second: deflating_mask_3
   - first:
-      213: -4016891641802036677
-    second: deflated_4
+      213: -5592778513591370479
+    second: deflating_mask_4
   - first:
-      213: -3105588460116077162
-    second: deflated_5
+      213: 9200218404314364837
+    second: deflating_mask_5
   - first:
-      213: -4142345699345042883
-    second: deflated_6
+      213: -5183446049619605831
+    second: deflating_mask_6
   - first:
-      213: -9152971170387571319
-    second: deflated_7
+      213: 3502668280915421893
+    second: deflating_mask_7
   - first:
-      213: 3949655233113602431
-    second: deflated_8
+      213: 344398045218517442
+    second: deflating_mask_8
   - first:
-      213: -7223852292373876554
-    second: deflated_9
+      213: 8673743865158527126
+    second: deflating_mask_9
   - first:
-      213: -74624540467042155
-    second: deflated_10
+      213: 3542254027992029114
+    second: deflating_mask_10
   - first:
-      213: 1401392273682729360
-    second: deflated_11
+      213: 7213592892975059429
+    second: deflating_mask_11
+  - first:
+      213: -4554493984788431173
+    second: deflating_mask_12
+  - first:
+      213: -5718705928493225795
+    second: deflating_mask_13
+  - first:
+      213: -5794544151057228227
+    second: deflating_mask_14
+  - first:
+      213: -8028352016995209074
+    second: deflating_mask_15
+  - first:
+      213: -8216512638983267929
+    second: deflating_mask_16
+  - first:
+      213: 5805550458035218889
+    second: deflating_mask_17
+  - first:
+      213: 959188959377375105
+    second: deflating_mask_18
+  - first:
+      213: -5712451907794925987
+    second: deflating_mask_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +125,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 3
+    textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -113,7 +137,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 3
+    textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -125,7 +149,112 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: deflated_0
+      name: deflating_mask_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 744e8e8db72e37120800000000000000
+      internalID: 2410519247121343559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b802003243a88c0800000000000000
+      internalID: -3996324394407261439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f70a2646eb6203170800000000000000
+      internalID: 8156061524337795199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac587a714d9e34930800000000000000
+      internalID: 4126398780740699594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11df2fdd2957262b0800000000000000
+      internalID: -5592778513591370479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_5
       rect:
         serializedVersion: 2
         x: 0
@@ -139,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1bd1edff6caa1d70800000000000000
-      internalID: 9014707201136253724
+      spriteID: 5ab3b25d4edbdaf70800000000000000
+      internalID: 9200218404314364837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_1
+      name: deflating_mask_6
       rect:
         serializedVersion: 2
         x: 128
@@ -160,14 +289,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9afacf848807bee10800000000000000
-      internalID: 2227998171307225001
+      spriteID: 9b6850ce743b018b0800000000000000
+      internalID: -5183446049619605831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_2
+      name: deflating_mask_7
       rect:
         serializedVersion: 2
         x: 256
@@ -181,14 +310,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 508b3ec613ca023b0800000000000000
-      internalID: -5539238213385471995
+      spriteID: 5caedf95e3afb9030800000000000000
+      internalID: 3502668280915421893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_3
+      name: deflating_mask_8
       rect:
         serializedVersion: 2
         x: 384
@@ -202,14 +331,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6bf494f382525e90800000000000000
-      internalID: -7038472540929066129
+      spriteID: 2c1b69a823c87c400800000000000000
+      internalID: 344398045218517442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_4
+      name: deflating_mask_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6986f7307145f5870800000000000000
+      internalID: 8673743865158527126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_10
       rect:
         serializedVersion: 2
         x: 0
@@ -223,14 +373,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3a672d85522148c0800000000000000
-      internalID: -4016891641802036677
+      spriteID: ab759a2554d982130800000000000000
+      internalID: 3542254027992029114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_5
+      name: deflating_mask_11
       rect:
         serializedVersion: 2
         x: 128
@@ -244,14 +394,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6959a38efbbb6e4d0800000000000000
-      internalID: -3105588460116077162
+      spriteID: 5e19f045484db1460800000000000000
+      internalID: 7213592892975059429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_6
+      name: deflating_mask_12
       rect:
         serializedVersion: 2
         x: 256
@@ -265,14 +415,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d32fba5988e6386c0800000000000000
-      internalID: -4142345699345042883
+      spriteID: bbe38010adf2bc0c0800000000000000
+      internalID: -4554493984788431173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_7
+      name: deflating_mask_13
       rect:
         serializedVersion: 2
         x: 384
@@ -286,14 +436,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98d48ad073d1af080800000000000000
-      internalID: -9152971170387571319
+      spriteID: db8ad3dc14313a0b0800000000000000
+      internalID: -5718705928493225795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_8
+      name: deflating_mask_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3e9ae0abc4a59fa0800000000000000
+      internalID: -5794544151057228227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_15
       rect:
         serializedVersion: 2
         x: 0
@@ -307,14 +478,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f79bff2228effc630800000000000000
-      internalID: 3949655233113602431
+      spriteID: e80b5376060959090800000000000000
+      internalID: -8028352016995209074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_9
+      name: deflating_mask_16
       rect:
         serializedVersion: 2
         x: 128
@@ -328,14 +499,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b0f92b1d98bfbb90800000000000000
-      internalID: -7223852292373876554
+      spriteID: 7a915eca94519fd80800000000000000
+      internalID: -8216512638983267929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_10
+      name: deflating_mask_17
       rect:
         serializedVersion: 2
         x: 256
@@ -349,14 +520,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5986fe53061e6fef0800000000000000
-      internalID: -74624540467042155
+      spriteID: 9c9abc8e165719050800000000000000
+      internalID: 5805550458035218889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deflated_11
+      name: deflating_mask_18
       rect:
         serializedVersion: 2
         x: 384
@@ -370,8 +541,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09906d719deb27310800000000000000
-      internalID: 1401392273682729360
+      spriteID: 18f3a2cc649bf4d00800000000000000
+      internalID: 959188959377375105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deflating_mask_19
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d568167714b49b0b0800000000000000
+      internalID: -5712451907794925987
       vertices: []
       indices: 
       edges: []

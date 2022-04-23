@@ -1,37 +1,34 @@
 fileFormatVersion: 2
-guid: 630a4bed0da8cbb49bdbe39d34fa0e91
+guid: 19457f3725809104595a74cdb88e03a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1991252620400956941
-    second: bounce_0
+      213: -7215176359594500518
+    second: dash_mask_0
   - first:
-      213: 5980057271102242301
-    second: bounce_1
+      213: 831230802792076561
+    second: dash_mask_1
   - first:
-      213: -438252082399230896
-    second: bounce_2
+      213: -8349457397119259883
+    second: dash_mask_2
   - first:
-      213: 5876312866359526156
-    second: bounce_3
+      213: 5222390207677721961
+    second: dash_mask_3
   - first:
-      213: 196152538734449768
-    second: bounce_4
+      213: 7062343241069466349
+    second: dash_mask_4
   - first:
-      213: 627618294793192657
-    second: bounce_5
+      213: -113251979130850627
+    second: dash_mask_5
   - first:
-      213: -6666613020169149719
-    second: bounce_6
+      213: 5662153419406412122
+    second: dash_mask_6
   - first:
-      213: -7178367963086716819
-    second: bounce_7
+      213: 6766617519235418193
+    second: dash_mask_7
   - first:
-      213: -4765147241113813892
-    second: bounce_8
-  - first:
-      213: 1235806385873061950
-    second: bounce_9
+      213: -8935487573136496184
+    second: dash_mask_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -95,7 +92,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 3
+    textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -107,7 +104,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 3
+    textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -119,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bounce_0
+      name: dash_mask_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f96fe6ba46ad54e0800000000000000
-      internalID: -1991252620400956941
+      spriteID: a5ed29e145b8edb90800000000000000
+      internalID: -7215176359594500518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bounce_1
+      name: dash_mask_1
       rect:
         serializedVersion: 2
         x: 128
@@ -154,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfd7a84876e6df250800000000000000
-      internalID: 5980057271102242301
+      spriteID: 115d8c6d200298b00800000000000000
+      internalID: 831230802792076561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bounce_2
+      name: dash_mask_2
       rect:
         serializedVersion: 2
         x: 256
@@ -175,35 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 054c4829d040be9f0800000000000000
-      internalID: -438252082399230896
+      spriteID: 51be2711cb4c02c80800000000000000
+      internalID: -8349457397119259883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bounce_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c03ca6cfa6bdc8150800000000000000
-      internalID: 5876312866359526156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bounce_4
+      name: dash_mask_3
       rect:
         serializedVersion: 2
         x: 0
@@ -217,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 864de09d1bfd8b200800000000000000
-      internalID: 196152538734449768
+      spriteID: 96deb177938a97840800000000000000
+      internalID: 5222390207677721961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bounce_5
+      name: dash_mask_4
       rect:
         serializedVersion: 2
         x: 128
@@ -238,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d44fab838fb5b800800000000000000
-      internalID: 627618294793192657
+      spriteID: de293d582cb720260800000000000000
+      internalID: 7062343241069466349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bounce_6
+      name: dash_mask_5
       rect:
         serializedVersion: 2
         x: 256
@@ -259,35 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e2e2d587ce6b73a0800000000000000
-      internalID: -6666613020169149719
+      spriteID: db2bbcdcce5ad6ef0800000000000000
+      internalID: -113251979130850627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bounce_7
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d600c25ce50516c90800000000000000
-      internalID: -7178367963086716819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bounce_8
+      name: dash_mask_6
       rect:
         serializedVersion: 2
         x: 0
@@ -301,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7c7afeb4dbceddb0800000000000000
-      internalID: -4765147241113813892
+      spriteID: a598b7b1982049e40800000000000000
+      internalID: 5662153419406412122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bounce_9
+      name: dash_mask_7
       rect:
         serializedVersion: 2
         x: 128
@@ -322,8 +277,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e388f114c57762110800000000000000
-      internalID: 1235806385873061950
+      spriteID: 15846fc58cad7ed50800000000000000
+      internalID: 6766617519235418193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_mask_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9284cf465cef380800000000000000
+      internalID: -8935487573136496184
       vertices: []
       indices: 
       edges: []
