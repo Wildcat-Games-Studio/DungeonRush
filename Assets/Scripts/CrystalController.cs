@@ -8,9 +8,9 @@ public class CrystalController : MonoBehaviour
     #region Variables
 
     [SerializeField]
-    private Hurtbox _hurtbox;
+    private Hurtbox _hurtbox = null;
     [SerializeField]
-    private Hitbox _hitbox;
+    private Hitbox _hitbox = null;
     [SerializeField]
     private int _maxHealth = 10;
     private int _health;
