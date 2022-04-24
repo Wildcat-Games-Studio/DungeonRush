@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class SlimeBoss : MonoBehaviour
 {
-    public Hitbox hitbox;
+    public Hitbox bounceBox;
+    public GameObject hitBoxPivot;
+    private Hitbox hitBox;
 
     [Header("Rendering")]
 
@@ -100,17 +102,32 @@ public class SlimeBoss : MonoBehaviour
             hearts[i] = heart;
         }
 
-        hitbox.collidedWith = BounceCollide;
+        hitBox = hitBoxPivot.GetComponentInChildren<Hitbox>();
+
+        bounceBox.collidedWith = BounceCollide;
+        hitBox.collidedWith = DamageCollide;
 
         _currentEdgeColor = followColor;
         StartFollow();
+    }
+
+    void Bounce(Rigidbody2D rb, Vector2 normal, float power)
+    {
+        Vector2 from_velo = rb.velocity - velocity;
+
+        float normalVelo = Vector2.Dot(from_velo, normal);
+
+        if (normalVelo > 0)
+            return;
+
+        rb.velocity -= 10.0f * normalVelo * normal;
     }
 
     void BounceCollide(Collider2D collider, Vector2 normal)
     {
         Rigidbody2D rb = collider.attachedRigidbody;
 
-        if (rb)
+        if (rb != null)
         {
             Vector2 from_velo = rb.velocity - velocity;
 
@@ -120,6 +137,24 @@ public class SlimeBoss : MonoBehaviour
                 return;
 
             rb.velocity -= 10.0f * normalVelo * normal;
+        }
+    }
+
+    void DamageCollide(Collider2D collider, Vector2 normal)
+    {
+        Rigidbody2D rb = collider.attachedRigidbody;
+
+        if (rb != null)
+        {
+            EntityStats stats = rb.GetComponent<EntityStats>();
+
+            if(stats != null)
+            {
+                Vector3 dir = Vector3.Cross(velocity.normalized, Vector3.forward);
+                rb.velocity += 10.0f * (Vector2)dir;
+
+                stats.Damage(10);
+            }
         }
     }
 
@@ -155,7 +190,9 @@ public class SlimeBoss : MonoBehaviour
 
         if (!Mathf.Approximately(velocity.x, 0.0f))
         {
-            spriteRenderer.flipX = velocity.x < 0;
+            bool flip = velocity.x < 0;
+            hitBoxPivot.transform.rotation = Quaternion.AngleAxis(180.0f * (flip ? 1.0f : 0.0f), Vector3.forward);
+            spriteRenderer.flipX = flip;
         }
     }
 

@@ -8,6 +8,7 @@ public class Hitbox : MonoBehaviour
     public CollidedWith collidedWith;
 
     public LayerMask mask;
+    public Color color;
 
     public enum HitboxType { box, sphere };
     public HitboxType type;
@@ -35,7 +36,7 @@ public class Hitbox : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.7f);
+        Gizmos.color = color;
         switch (type)
         {
             case HitboxType.box:
