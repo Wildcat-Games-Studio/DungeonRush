@@ -73,10 +73,10 @@ public class SlimeBoss : MonoBehaviour
     private bool boundaries = true;
 
     [Header("Hearts")]
-    public Sprite heartSprite;
-    private float heartDistance = .6f;  // space between the hearts
-    private int intHearts = 3;      // change to add more health
-    private GameObject[] hearts;
+    public GameObject heartPrefab;
+    public float heartDistance = .6f;  // space between the hearts
+    public int intHearts = 3;      // change to add more health
+    private GameObject[] heartTargets;
 
 
     private Vector2 velocity;
@@ -91,15 +91,16 @@ public class SlimeBoss : MonoBehaviour
 
         animDispatch.animationEvents.Add(StartFollow);
 
-        hearts = new GameObject[intHearts];
+        heartTargets = new GameObject[intHearts];
         for (int i = 0; i < intHearts; i++)
         {
-            GameObject heart = new GameObject();
-            heart.AddComponent<SpriteRenderer>();
-            heart.GetComponent<SpriteRenderer>().sprite = heartSprite;
-            heart.transform.SetParent(gameObject.transform);
-            heart.transform.position = new Vector2(transform.position.x + (i * heartDistance) - heartDistance * ((intHearts % 2 == 0) ? (intHearts / 2) - .5f : (intHearts / 2)), transform.position.y + .7f);
-            hearts[i] = heart;
+            heartTargets[i] = new GameObject();
+            heartTargets[i].transform.SetParent(transform);
+            heartTargets[i].transform.position = new Vector2(transform.position.x + (i * heartDistance) - heartDistance * ((intHearts % 2 == 0) ? (intHearts / 2) - .5f : (intHearts / 2)), transform.position.y + .7f);
+
+            GameObject heart = Instantiate(heartPrefab);
+            Follow follow = heart.GetComponent<Follow>();
+            follow.target = heartTargets[i].transform;
         }
 
         hitBox = hitBoxPivot.GetComponentInChildren<Hitbox>();
@@ -109,18 +110,6 @@ public class SlimeBoss : MonoBehaviour
 
         _currentEdgeColor = followColor;
         StartFollow();
-    }
-
-    void Bounce(Rigidbody2D rb, Vector2 normal, float power)
-    {
-        Vector2 from_velo = rb.velocity - velocity;
-
-        float normalVelo = Vector2.Dot(from_velo, normal);
-
-        if (normalVelo > 0)
-            return;
-
-        rb.velocity -= 10.0f * normalVelo * normal;
     }
 
     void BounceCollide(Collider2D collider, Vector2 normal)
@@ -281,15 +270,15 @@ public class SlimeBoss : MonoBehaviour
         spriteRenderer.sharedMaterial.SetColor("_EdgeCol", _currentEdgeColor);
     }
 
-    public void takeDamage()
-    {
-        Destroy(hearts[--intHearts]);
-        if (intHearts == 0)
-        {
-            // player won
-        }
+    //public void takeDamage()
+    //{
+    //    Destroy(hearts[--intHearts]);
+    //    if (intHearts == 0)
+    //    {
+    //        // player won
+    //    }
 
-    }
+    //}
 
     private void OrderBounds()
     {

@@ -370,6 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1014530491}
+  - component: {fileID: 1014530492}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -392,6 +393,17 @@ Transform:
   m_Father: {fileID: 2123328045}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1014530492
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014530490}
+  m_Enabled: 1
+  m_SortingLayerID: -1090742129
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1001 &1015461419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -879,7 +891,9 @@ MonoBehaviour:
   minY: -12
   maxY: 21.1
   boundaries: 1
-  heartSprite: {fileID: 21300000, guid: 300cbc1ac8f8c5045a9b33ebe3ac1576, type: 3}
+  heartPrefab: {fileID: 8367812929664227800, guid: efb856aba8e144f478b0b71f11e2fbcc, type: 3}
+  heartDistance: 4
+  intHearts: 3
 --- !u!50 &2123328047
 Rigidbody2D:
   serializedVersion: 4
