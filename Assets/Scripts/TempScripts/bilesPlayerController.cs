@@ -10,6 +10,9 @@ public class bilesPlayerController : MonoBehaviour
     private EntityStats entityStats;
 
     [SerializeField]
+    private Hitbox hitBox;
+
+    [SerializeField]
     private float _maxSpeed = 20;
     [SerializeField]
     private float _accel = 10;
@@ -32,6 +35,7 @@ public class bilesPlayerController : MonoBehaviour
 
     void Start()
     {
+        hitBox.collidedWith = SwordDamage;
         if (GameState.Instance.player == null) { GameState.Instance.player = this; }
     }
 
@@ -48,6 +52,21 @@ public class bilesPlayerController : MonoBehaviour
             {
                 anim.SetTrigger("attack");
 
+            }
+        }
+    }
+
+    private void SwordDamage(Collider2D collider, Vector2 normal)
+    {
+        Rigidbody2D rb = collider.attachedRigidbody;
+
+        if (rb != null)
+        {
+            EntityStats stats = rb.GetComponent<EntityStats>();
+
+            if (stats != null)
+            {
+                stats.Damage(1);
             }
         }
     }

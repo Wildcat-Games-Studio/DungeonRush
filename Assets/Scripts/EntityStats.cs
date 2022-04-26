@@ -14,6 +14,9 @@ public class EntityStats : MonoBehaviour
     public delegate void OnDeath();
     public OnDeath onDeath;
 
+    public delegate void OnDamage(int currentHealth);
+    public OnDamage onDamage;
+
     private float _nextDamageTime = 0.0f;
 
     private void Awake()
@@ -30,10 +33,13 @@ public class EntityStats : MonoBehaviour
             _nextDamageTime = Time.time + invTime;
 
             currentHealth -= amount;
-            if (currentHealth < 0)
+            if (currentHealth <= 0)
             {
-                print("Damaged: " + name + " " + amount);
                 onDeath?.Invoke();
+            }
+            else
+            {
+                onDamage?.Invoke(currentHealth);
             }
         }
     }

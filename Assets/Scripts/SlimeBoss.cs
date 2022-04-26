@@ -8,6 +8,7 @@ public class SlimeBoss : MonoBehaviour
     public Hitbox bounceBox;
     public GameObject hitBoxPivot;
     private Hitbox hitBox;
+    private EntityStats entityStats;
 
     [Header("Rendering")]
 
@@ -75,8 +76,10 @@ public class SlimeBoss : MonoBehaviour
     [Header("Hearts")]
     public GameObject heartPrefab;
     public float heartDistance = .6f;  // space between the hearts
-    public int intHearts = 3;      // change to add more health
+    public int heathPerHeart = 3;
+    public int numHearts = 3;      // change to add more health
     private GameObject[] heartTargets;
+    private GameObject[] hearts;
 
 
     private Vector2 velocity;
@@ -91,25 +94,45 @@ public class SlimeBoss : MonoBehaviour
 
         animDispatch.animationEvents.Add(StartFollow);
 
-        heartTargets = new GameObject[intHearts];
-        for (int i = 0; i < intHearts; i++)
-        {
-            heartTargets[i] = new GameObject();
-            heartTargets[i].transform.SetParent(transform);
-            heartTargets[i].transform.position = new Vector2(transform.position.x + (i * heartDistance) - heartDistance * ((intHearts % 2 == 0) ? (intHearts / 2) - .5f : (intHearts / 2)), transform.position.y + .7f);
+        heartTargets = new GameObject[numHearts];
+        hearts = new GameObject[numHearts];
 
-            GameObject heart = Instantiate(heartPrefab);
-            Follow follow = heart.GetComponent<Follow>();
-            follow.target = heartTargets[i].transform;
-        }
+        GenerateHeartItems();
+        CalculateHeartSpacing();
+
+        entityStats = GetComponent<EntityStats>();
+        entityStats.onDamage = TakeDamage;
+        entityStats.onDeath = Die;
+        entityStats.maxHealth = heathPerHeart * numHearts;
+        entityStats.FullHeal();
 
         hitBox = hitBoxPivot.GetComponentInChildren<Hitbox>();
-
         bounceBox.collidedWith = BounceCollide;
         hitBox.collidedWith = DamageCollide;
 
         _currentEdgeColor = followColor;
         StartFollow();
+    }
+
+    void GenerateHeartItems()
+    {
+        for (int i = 0; i < numHearts; i++)
+        {
+            heartTargets[i] = new GameObject();
+            heartTargets[i].transform.SetParent(transform);
+
+            hearts[i] = Instantiate(heartPrefab);
+            Follow follow = hearts[i].GetComponent<Follow>();
+            follow.target = heartTargets[i].transform;
+        }
+    }
+
+    void CalculateHeartSpacing()
+    {
+        for (int i = 0; i < numHearts; i++)
+        {
+            heartTargets[i].transform.position = new Vector2(transform.position.x + (i * heartDistance) - heartDistance * ((numHearts % 2 == 0) ? (numHearts / 2) - .5f : (numHearts / 2)), transform.position.y + .7f);
+        }
     }
 
     void BounceCollide(Collider2D collider, Vector2 normal)
@@ -137,7 +160,7 @@ public class SlimeBoss : MonoBehaviour
         {
             EntityStats stats = rb.GetComponent<EntityStats>();
 
-            if(stats != null)
+            if (stats != null)
             {
                 Vector3 dir = Vector3.Cross(velocity.normalized, Vector3.forward);
                 rb.velocity += 10.0f * (Vector2)dir;
@@ -270,15 +293,31 @@ public class SlimeBoss : MonoBehaviour
         spriteRenderer.sharedMaterial.SetColor("_EdgeCol", _currentEdgeColor);
     }
 
-    //public void takeDamage()
-    //{
-    //    Destroy(hearts[--intHearts]);
-    //    if (intHearts == 0)
-    //    {
-    //        // player won
-    //    }
+    private void TakeDamage(int currentHealth)
+    {
+        if (currentHealth % heathPerHeart == 0)
+        {
+            numHearts--;
+            if (numHearts >= 0)
+            {
+                GameObject heart = hearts[numHearts];
+                Destroy(heart);
 
-    //}
+                CalculateHeartSpacing();
+            }
+        }
+    }
+
+    private void Die()
+    {
+        numHearts--;
+        if (numHearts >= 0)
+        {
+            GameObject heart = hearts[numHearts];
+            Destroy(heart);
+            Destroy(gameObject);
+        }
+    }
 
     private void OrderBounds()
     {
