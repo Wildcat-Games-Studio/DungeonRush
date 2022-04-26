@@ -10,6 +10,8 @@ public class SlimeBoss : MonoBehaviour
     private Hitbox hitBox;
     private EntityStats entityStats;
 
+    public ParticleSystem damageSystem;
+
     [Header("Rendering")]
 
     public Animator spriteAnimator;
@@ -121,7 +123,7 @@ public class SlimeBoss : MonoBehaviour
             heartTargets[i] = new GameObject();
             heartTargets[i].transform.SetParent(transform);
 
-            GameObject heart= Instantiate(heartPrefab);
+            GameObject heart = Instantiate(heartPrefab);
             hearts[i] = heart.GetComponent<HeartBreaker>();
             Follow follow = heart.GetComponent<Follow>();
             follow.target = heartTargets[i].transform;
@@ -296,13 +298,16 @@ public class SlimeBoss : MonoBehaviour
 
     private void TakeDamage(int currentHealth)
     {
+        while (!damageSystem.isPlaying)
+        {
+            damageSystem.Play();
+        }
         if (currentHealth % heathPerHeart == 0)
         {
             numHearts--;
             if (numHearts >= 0)
             {
                 hearts[numHearts].Break();
-
                 CalculateHeartSpacing();
             }
         }
