@@ -11,6 +11,7 @@ public class SlimeBoss : MonoBehaviour
     private EntityStats entityStats;
 
     public ParticleSystem damageSystem;
+    public ParticleSystem deathSystem;
 
     [Header("Rendering")]
 
@@ -86,7 +87,7 @@ public class SlimeBoss : MonoBehaviour
 
     private Vector2 velocity;
     private Vector2 toPlayer;
-    private enum State { Follow, Attack, Recharge };
+    private enum State { Follow, Attack, Recharge, Dead };
     private State state = State.Follow;
 
     private void Awake()
@@ -102,6 +103,8 @@ public class SlimeBoss : MonoBehaviour
         OrderBounds();
 
         animDispatch.animationEvents.Add(StartFollow);
+        animDispatch.animationEvents.Add(() => { while (!deathSystem.isPlaying) deathSystem.Play(); });
+        animDispatch.animationEvents.Add(() => Destroy(gameObject));
 
         GenerateHeartItems();
         CalculateHeartSpacing();
@@ -154,7 +157,7 @@ public class SlimeBoss : MonoBehaviour
             if (normalVelo > 0)
                 return;
 
-            rb.velocity -= 10.0f * normalVelo * normal;
+            rb.velocity -= 6.0f * normalVelo * normal;
         }
     }
 
@@ -173,6 +176,35 @@ public class SlimeBoss : MonoBehaviour
 
                 stats.Damage(10);
             }
+        }
+    }
+
+    private void TakeDamage(int currentHealth)
+    {
+        while (!damageSystem.isPlaying)
+        {
+            damageSystem.Play();
+        }
+
+        if (currentHealth % heathPerHeart == 0)
+        {
+            numHearts--;
+            if (numHearts >= 0)
+            {
+                hearts[numHearts].Break();
+                CalculateHeartSpacing();
+            }
+        }
+    }
+
+    private void Die()
+    {
+        numHearts--;
+        if (numHearts >= 0)
+        {
+            hearts[numHearts].Break();
+            state = State.Dead;
+            spriteAnimator.SetTrigger("die");
         }
     }
 
@@ -297,33 +329,6 @@ public class SlimeBoss : MonoBehaviour
 
         _currentEdgeColor = Color.Lerp(_currentEdgeColor, _targEdgeColor, Time.fixedDeltaTime * colorChangeSpeed);
         spriteRenderer.sharedMaterial.SetColor("_EdgeCol", _currentEdgeColor);
-    }
-
-    private void TakeDamage(int currentHealth)
-    {
-        while (!damageSystem.isPlaying)
-        {
-            damageSystem.Play();
-        }
-        if (currentHealth % heathPerHeart == 0)
-        {
-            numHearts--;
-            if (numHearts >= 0)
-            {
-                hearts[numHearts].Break();
-                CalculateHeartSpacing();
-            }
-        }
-    }
-
-    private void Die()
-    {
-        numHearts--;
-        if (numHearts >= 0)
-        {
-            hearts[numHearts].Break();
-            Destroy(gameObject);
-        }
     }
 
     private void OrderBounds()
