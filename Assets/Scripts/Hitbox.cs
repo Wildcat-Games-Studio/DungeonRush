@@ -20,7 +20,7 @@ public class Hitbox : MonoBehaviour
         switch (type)
         {
             case HitboxType.box:
-                collider = Physics2D.OverlapBox(transform.position, transform.localScale / 2.0f, 0.0f, mask);
+                collider = Physics2D.OverlapBox(transform.position, transform.localScale, transform.rotation.eulerAngles.z, mask);
                 break;
             case HitboxType.sphere:
             default:
@@ -40,7 +40,8 @@ public class Hitbox : MonoBehaviour
         switch (type)
         {
             case HitboxType.box:
-                Gizmos.DrawCube(transform.position, transform.localScale);
+                Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+                Gizmos.DrawCube(Vector3.zero, transform.localScale);
                 break;
             case HitboxType.sphere:
                 Gizmos.DrawSphere(transform.position, transform.localScale.x / 2.0f);

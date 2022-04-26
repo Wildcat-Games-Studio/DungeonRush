@@ -1,32 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class CrystalController : MonoBehaviour
 {
     #region Variables
 
+    [Header("Entity interactions")]
     [SerializeField]
     private GameObject _hurtbox = null;
     [SerializeField]
-    private Hitbox _hitbox = null;
-    [SerializeField]
-    private int _maxHealth = 10;
-    private int _health;
-    [SerializeField]
-    private AnimationEventDispatch _crystalDispatch = null;
-
-    private int _healthStage = 0;
-
-    [SerializeField]
     private ParticleSystem _damageSystem = null;
+    [SerializeField]
+    private ParticleSystem _dieSystem = null;
+
+    private EntityStats entityStats = null;
+    private int _healthStage = 0;
 
     [Header("Crystal animations")]
     [SerializeField]
     private Animator _crystalAnimator = null;
     [SerializeField]
     private Animator _shadowAnimator = null;
+    [SerializeField]
+    private AnimationEventDispatch _crystalDispatch = null;
 
     [Header("Bubble animations")]
     [SerializeField]
@@ -52,7 +49,7 @@ public class CrystalController : MonoBehaviour
     [SerializeField]
     private Transform _laserOrigin = null;
     [SerializeField]
-    private EdgeCollider2D _laserCollider = null;
+    private Hitbox _lazerHitbox = null;
 
     [Header("Target state")]
     [SerializeField]
@@ -102,11 +99,16 @@ public class CrystalController : MonoBehaviour
         _stateTeleport = new StateTeleport(this);
         _stateDead = new StateDead(this);
 
-        _health = _maxHealth;
+        entityStats = GetComponent<EntityStats>();
     }
 
     void Start()
     {
+        entityStats.onDamage = TakeDamage;
+        entityStats.onDeath = () => SetState(_stateDead);
+
+        _lazerHitbox.collidedWith = DamageCollide;
+
         // add functions to the animation event dispatchers, this needs to be done for every animation event
         _bubbleDispatch.animationEvents.Add(_stateCharge.BubbleGrown);
         _bubbleDispatch.animationEvents.Add(_stateTarget.BubblePopped);
@@ -116,37 +118,9 @@ public class CrystalController : MonoBehaviour
 
         _crystalDispatch.animationEvents.Add(_stateDead.Falling);
         _crystalDispatch.animationEvents.Add(_stateDead.Dead);
+        _crystalDispatch.animationEvents.Add(_stateDead.Dying);
 
         SetState(_stateWait);
-    }
-
-    private void OnHit(int damage)
-    {
-        int last_health = _health;
-        _health -= damage;
-
-        _damageSystem.Play();
-
-        if (_health <= 0)
-        {
-            SetState(_stateDead);
-            return;
-        }
-
-        int half_health = (int)(0.5 * _maxHealth);
-        int quarter_health = (int)(0.25 * _maxHealth);
-
-        if(_health <= half_health && last_health > half_health)
-        {
-            _healthStage = 1;
-            _crystalAnimator.SetFloat("Damage", 1);
-        }
-        else if (_health <= quarter_health && last_health > quarter_health)
-        {
-            _healthStage = 2;
-            _crystalAnimator.SetFloat("Damage", 2);
-            _shadowAnimator.SetFloat("Damage", 1);
-        }
     }
 
     void Update()
@@ -161,12 +135,50 @@ public class CrystalController : MonoBehaviour
         _state?.Enter();
     }
 
+    private void TakeDamage(int currentHealth)
+    {
+        _damageSystem.Play();
+
+        int half_health = (int)(0.5 * entityStats.maxHealth);
+        int quarter_health = (int)(0.25 * entityStats.maxHealth);
+
+        if (currentHealth <= half_health && _healthStage == 0)
+        {
+            _healthStage = 1;
+            _crystalAnimator.SetFloat("Damage", 1);
+        }
+        else if (currentHealth <= quarter_health && _healthStage == 1)
+        {
+            _healthStage = 2;
+            _crystalAnimator.SetFloat("Damage", 2);
+            _shadowAnimator.SetFloat("Damage", 1);
+        }
+    }
+
+    void DamageCollide(Collider2D collider, Vector2 normal)
+    {
+        Rigidbody2D rb = collider.attachedRigidbody;
+
+        if (rb != null)
+        {
+            EntityStats stats = rb.GetComponent<EntityStats>();
+
+            if (stats != null)
+            {
+                Vector2 dir = (collider.transform.position - transform.position).normalized;
+                rb.velocity = 30.0f * dir;
+
+                stats.Damage(10);
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(_laserOrigin.position, Vector3.forward, _teleportRangeFromPlayer);
-        Handles.color = Color.cyan;
-        Handles.DrawWireDisc(_laserOrigin.position, Vector3.forward, _teleportRangeFromWall);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_laserOrigin.position, _teleportRangeFromPlayer);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(_laserOrigin.position, _teleportRangeFromWall);
     }
 
     #region States
@@ -192,9 +204,8 @@ public class CrystalController : MonoBehaviour
 
         public override void Enter()
         {
-            _machine._hitbox.gameObject.SetActive(true);
             _machine._hurtbox.SetActive(true);
-            _machine._laserCollider.gameObject.SetActive(false);
+            _machine._lazerHitbox.gameObject.SetActive(false);
             float healthMultipler = (3 - _machine._healthStage) / 3.0f;
             _waitTime = Random.Range(_machine._waitMin * healthMultipler, _machine._waitMax * healthMultipler);
         }
@@ -312,8 +323,6 @@ public class CrystalController : MonoBehaviour
         private float _rotationDir;
         private float _laserAngle;
 
-        private float _shootSpeed;
-
         public StateShoot(CrystalController machine) : base(machine) { }
 
         public override void Enter()
@@ -325,9 +334,7 @@ public class CrystalController : MonoBehaviour
             // initialize the laser to the origin to hide it
             _machine._shootLine.SetPositions(new Vector3[] { _machine._laserOrigin.position, _machine._laserOrigin.position });
             _machine._shootLine.gameObject.SetActive(true);
-            _machine._laserCollider.SetPoints(new List<Vector2> { Vector2.zero, Vector2.zero });
-
-            _machine._laserCollider.gameObject.SetActive(true);
+            _machine._lazerHitbox.gameObject.SetActive(true);
 
             // calculate the angle to rotate in
             Vector2 toSample = (_machine._sampledPlayerPos - (Vector2)_machine._laserOrigin.position).normalized;
@@ -336,8 +343,6 @@ public class CrystalController : MonoBehaviour
 
             // convert the vector to an angle for easier rotation
             _laserAngle = Vector2.SignedAngle(Vector2.right, toSample) * Mathf.Deg2Rad;
-
-            _shootSpeed = _machine._shootSpeed * _machine._healthStage + 1.0f;
         }
 
         public override void Exit()
@@ -345,7 +350,7 @@ public class CrystalController : MonoBehaviour
             // reset the laser to hide it
             _machine._shootLine.SetPositions(new Vector3[] { _machine._laserOrigin.position, _machine._laserOrigin.position });
             _machine._shootLine.gameObject.SetActive(false);
-            _machine._laserCollider.gameObject.SetActive(false);
+            _machine._lazerHitbox.gameObject.SetActive(false);
         }
 
         public override void Update()
@@ -357,7 +362,8 @@ public class CrystalController : MonoBehaviour
             }
 
             // rotate the line and convert it to a vector
-            _laserAngle += _rotationDir * _shootSpeed * Time.deltaTime;
+            float shootSpeed = _machine._shootSpeed * (_machine._healthStage + 1.0f);
+            _laserAngle += _rotationDir * shootSpeed * Time.deltaTime;
 
             Vector2 dir2Player;
             dir2Player.x = Mathf.Cos(_laserAngle);
@@ -367,8 +373,7 @@ public class CrystalController : MonoBehaviour
             if (hit)
             {
                 _machine._shootLine.SetPosition(1, hit.point);
-                _machine._laserCollider.SetPoints(new List<Vector2> { _machine._laserOrigin.position - _machine._laserCollider.transform.position,
-                                                                    hit.point - (Vector2)_machine._laserCollider.transform.position });
+                _machine._laserOrigin.rotation = Quaternion.AngleAxis(_laserAngle * Mathf.Rad2Deg, Vector3.forward);
             }
 
             _countDown -= Time.deltaTime;
@@ -386,7 +391,6 @@ public class CrystalController : MonoBehaviour
             _machine._hurtbox.SetActive(false);
             _firstRound = true;
             _machine._effectAnimator.SetTrigger("action");
-            _machine._hitbox.gameObject.SetActive(false);
         }
 
         public override void Exit()
@@ -453,13 +457,21 @@ public class CrystalController : MonoBehaviour
         public override void Enter()
         {
             _machine._crystalAnimator.SetBool("isDead", true);
-            _machine._hitbox.gameObject.SetActive(false);
         }
 
         public void Dead()
         {
             Destroy(_machine.gameObject);
         }
+
+        public void Dying()
+        {
+            while(!_machine._dieSystem.isPlaying)
+            {
+                _machine._dieSystem.Play();
+            }
+        }
+
         public void Falling()
         {
             _machine._shadowAnimator.SetBool("isVisible", false);

@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  invTime: 0
+  invTime: 0.8
 --- !u!114 &751991401962041219
 MonoBehaviour:
   m_ObjectHideFlags: 0
