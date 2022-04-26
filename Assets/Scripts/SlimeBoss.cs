@@ -79,7 +79,7 @@ public class SlimeBoss : MonoBehaviour
     public int heathPerHeart = 3;
     public int numHearts = 3;      // change to add more health
     private GameObject[] heartTargets;
-    private GameObject[] hearts;
+    private HeartBreaker[] hearts;
 
 
     private Vector2 velocity;
@@ -95,7 +95,7 @@ public class SlimeBoss : MonoBehaviour
         animDispatch.animationEvents.Add(StartFollow);
 
         heartTargets = new GameObject[numHearts];
-        hearts = new GameObject[numHearts];
+        hearts = new HeartBreaker[numHearts];
 
         GenerateHeartItems();
         CalculateHeartSpacing();
@@ -121,8 +121,9 @@ public class SlimeBoss : MonoBehaviour
             heartTargets[i] = new GameObject();
             heartTargets[i].transform.SetParent(transform);
 
-            hearts[i] = Instantiate(heartPrefab);
-            Follow follow = hearts[i].GetComponent<Follow>();
+            GameObject heart= Instantiate(heartPrefab);
+            hearts[i] = heart.GetComponent<HeartBreaker>();
+            Follow follow = heart.GetComponent<Follow>();
             follow.target = heartTargets[i].transform;
         }
     }
@@ -300,8 +301,7 @@ public class SlimeBoss : MonoBehaviour
             numHearts--;
             if (numHearts >= 0)
             {
-                GameObject heart = hearts[numHearts];
-                Destroy(heart);
+                hearts[numHearts].Break();
 
                 CalculateHeartSpacing();
             }
@@ -313,8 +313,7 @@ public class SlimeBoss : MonoBehaviour
         numHearts--;
         if (numHearts >= 0)
         {
-            GameObject heart = hearts[numHearts];
-            Destroy(heart);
+            hearts[numHearts].Break();
             Destroy(gameObject);
         }
     }

@@ -893,7 +893,8 @@ MonoBehaviour:
   boundaries: 1
   heartPrefab: {fileID: 8367812929664227800, guid: efb856aba8e144f478b0b71f11e2fbcc, type: 3}
   heartDistance: 4
-  intHearts: 3
+  heathPerHeart: 3
+  numHearts: 3
 --- !u!50 &2123328047
 Rigidbody2D:
   serializedVersion: 4
