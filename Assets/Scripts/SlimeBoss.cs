@@ -89,20 +89,23 @@ public class SlimeBoss : MonoBehaviour
     private enum State { Follow, Attack, Recharge };
     private State state = State.Follow;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        heartTargets = new GameObject[numHearts];
+        hearts = new HeartBreaker[numHearts];
+
+        entityStats = GetComponent<EntityStats>();
+    }
+
     void Start()
     {
         OrderBounds();
 
         animDispatch.animationEvents.Add(StartFollow);
 
-        heartTargets = new GameObject[numHearts];
-        hearts = new HeartBreaker[numHearts];
-
         GenerateHeartItems();
         CalculateHeartSpacing();
 
-        entityStats = GetComponent<EntityStats>();
         entityStats.onDamage = TakeDamage;
         entityStats.onDeath = Die;
         entityStats.maxHealth = heathPerHeart * numHearts;
