@@ -1,25 +1,43 @@
 fileFormatVersion: 2
-guid: 44635077716a9074b84982c12216d4cd
+guid: 581728b4031e32f4291e18fda608f9ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1211531736804417386
-    second: Down Attack Animation-sheet_0
+      213: -4206523213056301284
+    second: Foward Attack Animation-Sheet_0
   - first:
-      213: -4366254064569297851
-    second: Down Attack Animation-sheet_1
+      213: -2097920320876216809
+    second: Foward Attack Animation-Sheet_1
   - first:
-      213: 2019161432101208548
-    second: Down Attack Animation-sheet_2
+      213: 9181651528830586231
+    second: Foward Attack Animation-Sheet_2
   - first:
-      213: 2209772823664472029
-    second: Down Attack Animation-sheet_3
+      213: 3742075102307966491
+    second: Foward Attack Animation-Sheet_3
   - first:
-      213: 2726344353185378289
-    second: Down Attack Animation-sheet_4
+      213: -4578664262082871715
+    second: Foward Attack Animation-Sheet_4
   - first:
-      213: -1675611346088977909
-    second: Down Attack Animation-sheet_5
+      213: -3190956515162461151
+    second: Foward Attack Animation-Sheet_5
+  - first:
+      213: 8776757941672383779
+    second: Foward Attack Animation-Sheet_0
+  - first:
+      213: 3033058043141118946
+    second: Foward Attack Animation-Sheet_1
+  - first:
+      213: 1386012464565517079
+    second: Foward Attack Animation-Sheet_2
+  - first:
+      213: 4213450006415849004
+    second: Foward Attack Animation-Sheet_3
+  - first:
+      213: 249133273342301284
+    second: Foward Attack Animation-Sheet_4
+  - first:
+      213: -2030295504499602791
+    second: Foward Attack Animation-Sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,127 +149,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_0
+      name: Foward Attack Animation-Sheet_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 47
-        width: 40
-        height: 52
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.65, y: 0.45}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69029a9ed46cf2fe0800000000000000
-      internalID: -1211531736804417386
+      spriteID: 32598f0c8de4dc970800000000000000
+      internalID: 8776757941672383779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_1
+      name: Foward Attack Animation-Sheet_1
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
-        width: 48
-        height: 51
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.65, y: 0.45}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 544dd3acf03f763c0800000000000000
-      internalID: -4366254064569297851
+      spriteID: 2eb519c6836971a20800000000000000
+      internalID: 3033058043141118946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_2
+      name: Foward Attack Animation-Sheet_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 48
-        width: 43
-        height: 49
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.65, y: 0.45}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e1cf80ef90850c10800000000000000
-      internalID: 2019161432101208548
+      spriteID: 71bf0bc3efa1c3310800000000000000
+      internalID: 1386012464565517079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_3
+      name: Foward Attack Animation-Sheet_3
       rect:
         serializedVersion: 2
-        x: 391
-        y: 32
-        width: 71
-        height: 65
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.58, y: 0.55}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddf25dcdca0baae10800000000000000
-      internalID: 2209772823664472029
+      spriteID: c26b84ff47e297a30800000000000000
+      internalID: 4213450006415849004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_4
+      name: Foward Attack Animation-Sheet_4
       rect:
         serializedVersion: 2
-        x: 515
-        y: 28
-        width: 82
-        height: 70
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.58, y: 0.58}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ffa1039ebbe5d520800000000000000
-      internalID: 2726344353185378289
+      spriteID: 4645c436469157300800000000000000
+      internalID: 249133273342301284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Animation-sheet_5
+      name: Foward Attack Animation-Sheet_5
       rect:
         serializedVersion: 2
-        x: 667
-        y: 31
-        width: 81
-        height: 67
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.28, y: 0.58}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a90c6cb580fb8e0800000000000000
-      internalID: -1675611346088977909
+      spriteID: 99a8a31eef0f2d3e0800000000000000
+      internalID: -2030295504499602791
       vertices: []
       indices: 
       edges: []
