@@ -5,157 +5,355 @@ using UnityEngine;
 
 public class SlimeBoss : MonoBehaviour
 {
-    public Sprite[] sprites;
-    public string playerName = "player";
-    private float speed = 1f;
-    private float attackSpeed = 20f;
-    private float maxDistance = 5f, minDistance = 2f;      // in attacking range
+    public Hitbox bounceBox;
+    public GameObject hitBoxPivot;
+    private Hitbox hitBox;
+    private EntityStats entityStats;
+
+    public ParticleSystem damageSystem;
+    public ParticleSystem deathSystem;
+
+    [Header("Rendering")]
+
+    public Animator spriteAnimator;
+    public SpriteRenderer spriteRenderer;
+
+    public AnimationEventDispatch animDispatch;
+
+    public float colorChangeSpeed;
+    public Color followColor;
+    public Color attackColor;
+    public Color rechargeColor;
+
+    private Color _currentEdgeColor;
+    private Color _targEdgeColor;
+
+    [Header("Follow State")]
+
+    [SerializeField]
+    private float movementSpeed = 1f;
+    [SerializeField]
+    private float movementAccel = 1f;
+    [SerializeField]
+    private float minMoveTime = 2f;
+
     private float moveTime = 0f;
-    private float setMoveTime = 2f;
-    public int state = 0;
-    public float attacktime = 0;
-    private float setAttackTime = .5f;
+
+    [Header("Attack State")]
+    [SerializeField]
+    private float attackSpeed = 20f;
+    [SerializeField]
+    private float attackAccel = 20f;
+    [SerializeField]
+    private float maxDistance = 5f, minDistance = 2f;      // in attacking range
+    [SerializeField]
+    private float attackChargeTime = .5f;
+    [SerializeField]
     private float attackDuration = .8f; // -attacktime, increase for longer attack mode
+
+    private float attacktime = 0.0f;
+
+    [Header("Recharge State")]
+    [SerializeField]
+    private float chargingTime = 0.0f;
+    [SerializeField]
     private float chargingDuration = 2;
-    private float chargingTime;
-    private Transform playerTransform;
-    private int currentImg;
-    private float playerX;
-    private float playerY;
-    private float attackSpeedX, attackSpeedY;
-    private float bossX, bossY;
-    private int directionX, directionY;
-    private float minX =1, minY=.5f, maxX=19, maxY=9.5f;    // controls boundries 
+
+    [SerializeField]
+    private float friction = 1f;
+
+
+    [Header("Boundaries")]
+
+    [SerializeField]
+    private float minX = 0.0f;
+    [SerializeField]
+    private float maxX = 0.0f;
+    [SerializeField]
+    private float minY = 0.0f;
+    [SerializeField]
+    private float maxY = 0.0f;
+    [SerializeField]
     private bool boundaries = true;
 
-    public Sprite heartSprite;
-    private float heartDistance = .6f;  // space between the hearts
-    private int intHearts = 3;      // change to add more health
-    private GameObject[] hearts;
+    [Header("Hearts")]
+    public GameObject heartPrefab;
+    public float heartDistance = .6f;  // space between the hearts
+    public int heathPerHeart = 3;
+    public int numHearts = 3;      // change to add more health
+    private GameObject[] heartTargets;
+    private HeartBreaker[] hearts;
 
-    private bool canDamagePlayer;
 
-    // Start is called before the first frame update
+    private Vector2 velocity;
+    private Vector2 toPlayer;
+    private enum State { Follow, Attack, Recharge, Dead };
+    private State state = State.Follow;
+
+    private void Awake()
+    {
+        heartTargets = new GameObject[numHearts];
+        hearts = new HeartBreaker[numHearts];
+
+        entityStats = GetComponent<EntityStats>();
+    }
+
     void Start()
     {
-        hearts = new GameObject[intHearts];
-        playerTransform = GameObject.Find(playerName).GetComponent<Transform>();
-        for(int i = 0; i < intHearts; i++)
-        {
-            GameObject heart = new GameObject();
-            heart.AddComponent<SpriteRenderer>();
-            heart.GetComponent<SpriteRenderer>().sprite = heartSprite;
-            heart.transform.SetParent(gameObject.transform);
-            heart.transform.position = new Vector2(transform.position.x + (i * heartDistance) - heartDistance * ((intHearts%2==0)?(intHearts/2)-.5f:(intHearts/2)), transform.position.y + .7f);
-            hearts[i] = heart;
-        }
-        //takeDamage();
+        OrderBounds();
+
+        animDispatch.animationEvents.Add(StartFollow);
+        animDispatch.animationEvents.Add(() => { while (!deathSystem.isPlaying) deathSystem.Play(); });
+        animDispatch.animationEvents.Add(() => Destroy(gameObject));
+
+        GenerateHeartItems();
+        CalculateHeartSpacing();
+
+        entityStats.onDamage = TakeDamage;
+        entityStats.onDeath = Die;
+        entityStats.maxHealth = heathPerHeart * numHearts;
+        entityStats.FullHeal();
+
+        hitBox = hitBoxPivot.GetComponentInChildren<Hitbox>();
+        bounceBox.collidedWith = BounceCollide;
+        hitBox.collidedWith = DamageCollide;
+
+        _currentEdgeColor = followColor;
+        StartFollow();
     }
 
-    // Update is called once per frame
-    void Update()
+    void GenerateHeartItems()
     {
-        
+        for (int i = 0; i < numHearts; i++)
+        {
+            heartTargets[i] = new GameObject();
+            heartTargets[i].transform.SetParent(transform);
+
+            GameObject heart = Instantiate(heartPrefab);
+            hearts[i] = heart.GetComponent<HeartBreaker>();
+            Follow follow = heart.GetComponent<Follow>();
+            follow.target = heartTargets[i].transform;
+        }
     }
+
+    void CalculateHeartSpacing()
+    {
+        for (int i = 0; i < numHearts; i++)
+        {
+            heartTargets[i].transform.position = new Vector2(transform.position.x + (i * heartDistance) - heartDistance * ((numHearts % 2 == 0) ? (numHearts / 2) - .5f : (numHearts / 2)), transform.position.y + .7f);
+        }
+    }
+
+    void BounceCollide(Collider2D collider, Vector2 normal)
+    {
+        Rigidbody2D rb = collider.attachedRigidbody;
+
+        if (rb != null)
+        {
+            Vector2 from_velo = rb.velocity - velocity;
+
+            float normalVelo = Vector2.Dot(from_velo, normal);
+
+            if (normalVelo > 0)
+                return;
+
+            rb.velocity -= 6.0f * normalVelo * normal;
+        }
+    }
+
+    void DamageCollide(Collider2D collider, Vector2 normal)
+    {
+        Rigidbody2D rb = collider.attachedRigidbody;
+
+        if (rb != null)
+        {
+            EntityStats stats = rb.GetComponent<EntityStats>();
+
+            if (stats != null)
+            {
+                Vector3 dir = Vector3.Cross(velocity.normalized, Vector3.forward);
+                rb.velocity += 10.0f * (Vector2)dir;
+
+                stats.Damage(10);
+            }
+        }
+    }
+
+    private void TakeDamage(int currentHealth)
+    {
+        while (!damageSystem.isPlaying)
+        {
+            damageSystem.Play();
+        }
+
+        if (currentHealth % heathPerHeart == 0)
+        {
+            numHearts--;
+            if (numHearts >= 0)
+            {
+                hearts[numHearts].Break();
+                CalculateHeartSpacing();
+            }
+        }
+    }
+
+    private void Die()
+    {
+        numHearts--;
+        if (numHearts >= 0)
+        {
+            hearts[numHearts].Break();
+            state = State.Dead;
+            spriteAnimator.SetTrigger("die");
+        }
+    }
+
+    void StartFollow()
+    {
+        spriteAnimator.ResetTrigger("move");
+        state = State.Follow;
+        moveTime = 0.0f;
+
+        _targEdgeColor = followColor;
+    }
+    void StartAttacK()
+    {
+        state = State.Attack;
+        spriteAnimator.SetTrigger("dash");
+        attacktime = 0.0f;
+
+        _targEdgeColor = attackColor;
+    }
+
+    void StartRecharge()
+    {
+        state = State.Recharge;
+        spriteAnimator.SetTrigger("recharge");
+        chargingTime = 0.0f;
+
+        _targEdgeColor = rechargeColor;
+    }
+
+    void UpdateMovement()
+    {
+        transform.Translate(velocity * Time.fixedDeltaTime);
+
+        if (!Mathf.Approximately(velocity.x, 0.0f))
+        {
+            bool flip = velocity.x < 0;
+            hitBoxPivot.transform.rotation = Quaternion.AngleAxis(180.0f * (flip ? 1.0f : 0.0f), Vector3.forward);
+            spriteRenderer.flipX = flip;
+        }
+    }
+
     void FixedUpdate()
     {
-        bossX = transform.position.x;
-        bossY = transform.position.y;
-
         switch (state)
         {
-            case 0: // fallow player 
-                if (currentImg != 0)
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];  // sets boss sprite to default
-                move(speed,speed, new Vector2(playerTransform.position.x,playerTransform.position.y));
+            case State.Follow:
+
                 moveTime += Time.deltaTime;
-                playerX = Math.Abs(gameObject.transform.position.x - playerTransform.position.x);
-                playerY = Math.Abs(gameObject.transform.position.y - playerTransform.position.y);
-                if (moveTime > setMoveTime && ((playerX < maxDistance && playerY < maxDistance) && (playerX > minDistance || playerY > minDistance)))
-                {
-                    moveTime = 0;
-                    state = 1;
-                    directionX = bossX > playerTransform.position.x ? -1 : 1;
-                    directionY = bossY > playerTransform.position.y ? -1 : 1;
 
+                toPlayer = GameState.Instance.player.transform.position - gameObject.transform.position;
+                float sqrMag = Vector2.SqrMagnitude(toPlayer);
+                toPlayer.Normalize();
+                if (moveTime > minMoveTime && sqrMag < maxDistance * maxDistance && sqrMag > minDistance * minDistance)
+                {
+                    StartAttacK();
+                    break;
                 }
-                currentImg = 0;
+
+                velocity = Vector2.Lerp(velocity, toPlayer * movementSpeed, movementAccel * Time.fixedDeltaTime);
+
                 break;
-            case 1: // attack player
-                if (currentImg != 1)
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];      // sets boss sprite to attack sprite
+            case State.Attack:
+
                 attacktime += Time.deltaTime;
-                if (attacktime > setAttackTime)
-                {
-                    if(playerX > playerY)
-                    {
-                        attackSpeedX = playerX / playerX;
-                        attackSpeedY = playerY / playerX;
-                    }
-                    else
-                    {
-                        attackSpeedX = playerX / playerY;
-                        attackSpeedY = playerY / playerY;
-                    }
 
-                    move(attackSpeedX * attackSpeed, attackSpeedY * attackSpeed, new Vector2(bossX + playerX * directionX , bossY + playerY * directionY));
-                }
-                if(attacktime > attackDuration)
+                if (attacktime > attackChargeTime)
                 {
-                    state = 2;
-                    chargingTime = 0;
+                    Vector2 targ_velo = toPlayer * attackSpeed;
+                    Vector2 velo_delta = targ_velo - velocity;
+
+                    float velo_len = velo_delta.magnitude;
+                    Vector2 to_targ = velo_delta.normalized;
+
+                    float accel = attackAccel * attackSpeed * Time.fixedDeltaTime;
+
+                    if (accel > velo_len) accel = velo_len;
+
+                    velocity += accel * to_targ;
                 }
-                if(boundaries)
-                    if(bossX < minX || bossX > maxX || bossY < minY || bossY > maxY)
-                    {
-                        state = 2;
-                        chargingTime = 0;
-                    }
-                currentImg = 1;
+
+                if (attacktime > attackDuration)
+                {
+                    StartRecharge();
+                    break;
+                }
                 break;
-            case 2: // recharging
-                if (currentImg != 2)
+            case State.Recharge:
+
+                velocity = Vector2.Lerp(velocity, Vector2.zero, friction * Time.fixedDeltaTime);
+
+                if (chargingTime > chargingDuration)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];  // sets boss sprite to charaging sprite
-                    attacktime = 0;
-                }
-                if(chargingTime > chargingDuration)
-                {
-                    state = 0;
+                    spriteAnimator.ResetTrigger("recharge");
+                    spriteAnimator.SetTrigger("move");
+                    break;
                 }
                 chargingTime += Time.deltaTime;
-                currentImg = 2;
                 break;
 
         }
-        
-    }
-    public void move(float speedX, float speedY, Vector2 destination) // moves the boss to a location
-    {
-        if (destination.x > gameObject.transform.position.x)
+
+        UpdateMovement();
+        if (boundaries)
         {
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x + speedX * Time.deltaTime, gameObject.transform.position.y);
-        }
-        else if (destination.x < gameObject.transform.position.x)
-        {
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x - speedX * Time.deltaTime, gameObject.transform.position.y);
-        }
-        if (destination.y > gameObject.transform.position.y)
-        {
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + speedY * Time.deltaTime);
-        }
-        else if (destination.y < gameObject.transform.position.y)
-        {
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - speedY * Time.deltaTime);
-        }
-    }
-    public void takeDamage()
-    {
-        Destroy(hearts[--intHearts]);
-        if(intHearts == 0)
-        {
-            // player won
+            Vector2 bounceNormal = Vector2.zero;
+
+            if (transform.position.x < minX) { bounceNormal = Vector2.right; }
+            else if (transform.position.x > maxX) { bounceNormal = Vector2.left; }
+            else if (transform.position.y < minY) { bounceNormal = Vector2.up; }
+            else if (transform.position.y > maxY) { bounceNormal = Vector2.down; }
+
+            if (bounceNormal != Vector2.zero)
+            {
+                velocity = velocity.magnitude * 0.9f * bounceNormal;
+
+                if (velocity.magnitude > attackSpeed * 0.5f)
+                {
+                    StartRecharge();
+                }
+            }
         }
 
+        _currentEdgeColor = Color.Lerp(_currentEdgeColor, _targEdgeColor, Time.fixedDeltaTime * colorChangeSpeed);
+        spriteRenderer.sharedMaterial.SetColor("_EdgeCol", _currentEdgeColor);
+    }
+
+    private void OrderBounds()
+    {
+        float t;
+        if (minX > maxX)
+        {
+            t = minX;
+            minX = maxX;
+            maxX = t;
+        }
+        if (minY > maxY)
+        {
+            t = minY;
+            minY = maxY;
+            maxY = t;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(gameObject.transform.position, minDistance);
+        Gizmos.DrawWireSphere(gameObject.transform.position, maxDistance);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(new Vector3((maxX + minX) * 0.5f, (maxY + minY) * 0.5f, 0.0f), new Vector3(maxX - minX, maxY - minY, 1.0f));
     }
 }

@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 public class bilesPlayerController : MonoBehaviour
 {
     [SerializeField]
-    private int _maxHeath = 100;
-    private int _currentHealth;
+    private EntityStats entityStats;
+
+    [SerializeField]
+    private Hitbox hitBox;
 
     [SerializeField]
     private float _maxSpeed = 20;
@@ -16,9 +18,6 @@ public class bilesPlayerController : MonoBehaviour
     private float _accel = 10;
     [SerializeField]
     private float _friction = 50;
-
-    [SerializeField]
-    private Hurtbox _hurtbox;
 
     public Animator anim;
 
@@ -31,21 +30,13 @@ public class bilesPlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _currentHealth = _maxHeath;
-
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
+        hitBox.collidedWith = SwordDamage;
         if (GameState.Instance.player == null) { GameState.Instance.player = this; }
-        _hurtbox.onHit = OnHit;
-    }
-
-    private void OnHit(int damage)
-    {
-        _currentHealth -= damage;
-        print("Player Health: " + _currentHealth);
     }
 
     public void MovementInput(InputAction.CallbackContext context)
@@ -61,6 +52,21 @@ public class bilesPlayerController : MonoBehaviour
             {
                 anim.SetTrigger("attack");
 
+            }
+        }
+    }
+
+    private void SwordDamage(Collider2D collider, Vector2 normal)
+    {
+        Rigidbody2D rb = collider.attachedRigidbody;
+
+        if (rb != null)
+        {
+            EntityStats stats = rb.GetComponent<EntityStats>();
+
+            if (stats != null)
+            {
+                stats.Damage(1);
             }
         }
     }
