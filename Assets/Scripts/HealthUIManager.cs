@@ -18,7 +18,6 @@ public class HealthUIManager : MonoBehaviour
     void Start()
     {
         GenerateHeartItems();
-        CalculateHeartSpacing();
         PlayerStats.onDamage += OnDamageReceived;
         currentHeart = hearts.Length;
     }
@@ -37,16 +36,9 @@ public class HealthUIManager : MonoBehaviour
         }
     }
 
-    void CalculateHeartSpacing()
-    {
-        for (int i = 0; i < numHearts; i++)
-        {
-            //hearts[i].transform.position = new Vector2(transform.position.x + (i * heartDistance) - heartDistance * ((numHearts % 2 == 0) ? (numHearts / 2) - .5f : (numHearts / 2)), transform.position.y + .7f);
-        }
-    }
-
     void OnDamageReceived(int CurrentHealth)
     {
+        if (currentHeart == 0) return;
         hearts[--currentHeart].Break();
     }
 }
