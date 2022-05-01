@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private int room { get; set; }
-    private bool[] openRooms;
+    private bool slimeBoss = true;
+    private bool crystalBoss = true;
 
     private void Awake()
     {
@@ -19,25 +20,27 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
     public void ChangeRoom(int newRoom) // called when a player touches a door
     {
-        if (openRooms[newRoom] && newRoom != room)
+        if (newRoom != room)
         {
             room = newRoom;
             SceneManager.LoadScene(newRoom);
 
         }
     }
-    public void ChangeRoom(int newRoom, bool oldRoomIsOpen) // called when a player touches a door, change oldRoomIsOpen to false to close a room
+    public bool isOpen(int room) // is the room open
     {
-        if (openRooms[newRoom] && newRoom != room)
-        {
-            openRooms[newRoom] = oldRoomIsOpen;
-            room = newRoom;
-            SceneManager.LoadScene(newRoom);
+        if (room == 1)
+            return slimeBoss;
+        if(room == 2)
+            return crystalBoss;
+        return true;
+ 
 
-        }
     }
+
 }
